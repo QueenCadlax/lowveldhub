@@ -59,18 +59,18 @@ export default function FiltersPanel({ filters, setFilters }: FiltersPanelProps)
   };
 
   return (
-    <aside className="w-72 bg-[#121212] rounded-lg border border-[#1c1c1c]/30 p-4 space-y-4 hidden md:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+    <aside className="w-full lg:w-72 bg-[#121212] rounded-lg border border-[#1c1c1c]/30 p-4 space-y-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto">
       {/* Categories with Search */}
       <div>
         <div className="flex items-center justify-between mb-3 px-2">
-          <div className="flex items-center gap-2">
-            <Search size={16} className="text-[#bfa14f]" />
+          <div className="flex items-center gap-2 flex-1">
+            <Search size={16} className="text-[#bfa14f] flex-shrink-0" />
             <input
               type="text"
               placeholder="Search categories…"
               value={categorySearch}
               onChange={(e) => setCategorySearch(e.target.value)}
-              className="w-56 pl-2 pr-2 py-2 bg-transparent text-sm text-white placeholder-gray-600 focus:outline-none"
+              className="flex-1 w-full pl-2 pr-2 py-2 bg-transparent text-sm text-white placeholder-gray-600 focus:outline-none"
             />
           </div>
           <button
