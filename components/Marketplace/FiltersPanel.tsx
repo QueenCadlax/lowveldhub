@@ -59,7 +59,7 @@ export default function FiltersPanel({ filters, setFilters }: FiltersPanelProps)
   };
 
   return (
-    <aside className="w-full lg:w-72 bg-[#121212] rounded-lg border border-[#1c1c1c]/30 p-4 space-y-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto">
+    <aside className="w-full lg:w-72 bg-[#121212] rounded-lg border border-[#1c1c1c]/30 p-4 space-y-4 max-h-[60vh] overflow-y-auto lg:sticky lg:top-24 lg:max-h-[calc(100vh-120px)]">
       {/* Categories with Search */}
       <div>
         <div className="flex items-center justify-between mb-3 px-2">
