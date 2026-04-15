@@ -38,14 +38,14 @@ export default function ProductCard({ product, onView, onAddToCart }: ProductCar
       className="group bg-black rounded-2xl overflow-hidden transition-transform duration-300 hover:shadow-[0_24px_80px_rgba(212,175,55,0.12)] hover:-translate-y-1 cursor-pointer border border-white/6"
       style={{
         display: 'flex',
-        flexDirection: window.innerWidth < 640 ? 'row' : 'column',
-        height: window.innerWidth < 640 ? '140px' : (window.innerWidth < 1024 ? '360px' : '420px'),
+        flexDirection: 'column',
+        height: window.innerWidth < 640 ? '320px' : (window.innerWidth < 1024 ? '420px' : '500px'),
       }}
     >
       {/* Image Container - Responsive Sizing */}
       <div className="relative bg-[#070707] overflow-hidden flex-shrink-0" style={{
-        width: window.innerWidth < 640 ? '140px' : '100%',
-        height: window.innerWidth < 640 ? '140px' : (window.innerWidth < 768 ? '180px' : (window.innerWidth < 1024 ? '240px' : '280px')),
+        width: '100%',
+        height: window.innerWidth < 640 ? '200px' : (window.innerWidth < 1024 ? '280px' : '320px'),
       }}>
         {/* Image guaranteed by hard render rule above */}
         {/* eslint-disable-next-line @next/next/no-img-element */}

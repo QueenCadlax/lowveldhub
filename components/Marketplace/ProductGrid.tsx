@@ -26,7 +26,7 @@ export default function ProductGrid({ products, onView, onAddToCart, sellers = [
   }
 
   return (
-    <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 auto-rows-fr items-stretch">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-6 auto-rows-fr items-stretch">
       {products
         .filter(p => p.images && p.images.length > 0 && !!p.images[0] && p.title && ((typeof p.priceValue === 'number' && !Number.isNaN(p.priceValue)) || (p.price && p.price !== 'Price on request')))
         .map((p) => (
