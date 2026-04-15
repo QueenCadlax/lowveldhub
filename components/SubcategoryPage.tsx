@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Business, Category, CategorySubcategories, MPUMALANGA_AREAS } from '../types';
 import categoryConfig from './categoryConfig';
 import SubcategoryCard from './SubcategoryCard';
+import AirbnbCard from './AirbnbCard';
 import { ChevronDown, Settings } from 'lucide-react';
 
 interface Props {
@@ -37,7 +38,7 @@ const getCategoryDetectionFlags = (subCategoryName: string, categoryKey?: Catego
   const isEducation = categoryKey === Category.EducationAndSkills || /SCHOOL|UNIVERSITY|COLLEGE|TUTOR|EDUCATION|TVET|VOCATIONAL/i.test(subCategoryName);
   const isFamily = categoryKey === Category.CommunityAndOrganisations || /FAMILY|CHILDCARE|COMMUNITY|CHILDREN|KIDS|CHURCH|MOSQUE|PLAYCENTRE|PLAY CENTRE|AFTERSCHOOL|RELIGIOUS/i.test(subCategoryName);
   const isRealEstate = categoryKey === Category.RealEstateAndProperty || /ESTATE|PROPERTY|RENTAL|COMMERCIAL|LAND|VILLA|APARTMENT|LOFT|AGENT/i.test(subCategoryName);
-  const isTransport = categoryKey === Category.TransportAndLogistics || /FREIGHT|LOGISTICS|COURIER|DRIVER|TRANSFER|SHUTTLE|CHARTER|EV CHARGE|HELICOPTER/i.test(subCategoryName);
+  const isTransport = categoryKey === Category.TransportChauffeursFleet || /FREIGHT|LOGISTICS|COURIER|DRIVER|TRANSFER|SHUTTLE|CHARTER|EV CHARGE|HELICOPTER/i.test(subCategoryName);
   const isFreightHaulage = /FREIGHT|HAULAGE/i.test(subCategoryName);
   const isLogisticsWarehouse = /LOGISTICS|WAREHOUSE|WAREHOUSING/i.test(subCategoryName);
   const isCourierDelivery = /COURIER|DELIVERY|EXPRESS/i.test(subCategoryName);
@@ -777,27 +778,45 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
 
       {/* Tier Highlight Section (Landing Page Only) */}
       {hasSelectedSubcategory === false && elitePlatinumListings.length > 0 && (
-        <section className="container mx-auto px-4 mb-8">
-          <div className="mb-4 flex items-center gap-3">
-            <div className="w-2 h-6 rounded bg-gradient-to-b from-gold-400 to-gold-600"></div>
-            <h2 className="text-2xl font-serif text-gold-300 uppercase">🏆 Featured Highlights</h2>
+        <section className="container mx-auto px-4 mb-16">
+          {/* Luxury Section Header */}
+          <div className="mb-10 flex items-center justify-center gap-4 relative">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gold-500/30 to-transparent"></div>
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-5xl opacity-10">🏆</span>
+              <h2 className="text-2xl sm:text-3xl font-serif text-gold-300 uppercase tracking-widest text-center">Featured Highlights</h2>
+            </div>
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent via-gold-500/30 to-transparent"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {elitePlatinumListings.map(item => {
+          
+          {/* Airbnb Grid - 4 Columns Desktop, Responsive Mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+            {elitePlatinumListings.slice(0, 12).map(item => {
               const isFoodCategory = categoryKey === Category.FoodAndHospitality || isShisa || isCasual || isCafe || isBars || isBakery || isFoodTruck || isCatering;
               const detailView = isFoodCategory ? 'eatery-detail' : 'business-detail';
+
               return (
-                <SubcategoryCard
+                <AirbnbCard
                   key={item.id}
                   business={item}
-                  isCompact={true}
-                  onClick={(business) => navigate?.(detailView, categoryName, business.id)}
-                  primaryCTA="Discover"
-                  secondaryCTA="Learn More"
+                  isFavorite={false}
+                  onToggleFavorite={() => {}}
+                  onClick={() => navigate?.(detailView, categoryName, item.id)}
                 />
               );
             })}
           </div>
+
+          {elitePlatinumListings.length === 0 && (
+            <div className="text-center py-16">
+              <div className="text-5xl mb-4 opacity-20">✨</div>
+              <p className="text-sm text-gray-400">No Elite/Platinum listings yet</p>
+              <p className="text-xs text-gray-500 mt-2">Explore all options below</p>
+            </div>
+          )}
+
+          {/* Bottom Divider */}
+          <div className="mt-12 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent"></div>
         </section>
       )}
 

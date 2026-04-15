@@ -4,8 +4,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    const isProduction = mode === 'production';
-
     return {
       server: {
         port: 3000,
@@ -22,21 +20,6 @@ export default defineConfig(({ mode }) => {
         }
       },
       build: {
-        target: ['es2020', 'edge89'],
-        minify: 'terser',
-        terserOptions: {
-          compress: {
-            drop_console: isProduction,
-            drop_debugger: isProduction
-          },
-          output: {
-            comments: false
-          }
-        },
-        cssCodeSplit: true,
-        sourcemap: !isProduction,
-        reportCompressedSize: !isProduction,
-        chunkSizeWarningLimit: 800,
         rollupOptions: {
           output: {
             manualChunks: (id) => {
@@ -55,15 +38,13 @@ export default defineConfig(({ mode }) => {
                 if (id.includes('google') || id.includes('genai')) {
                   return 'vendor-ai';
                 }
-                if (id.includes('lucide')) {
-                  return 'vendor-icons';
-                }
                 return 'vendor-other';
               }
               return undefined;
             }
           }
-        }
+        },
+        chunkSizeWarningLimit: 800
       }
     };
 });

@@ -8,6 +8,35 @@ import {
   Store, Shirt, Smartphone, Armchair, Laptop, Pill, Smile, Hospital, Dog,
   Info, Coffee, Wine, Landmark, HardHat, Gavel, Calculator, BookOpen, Warehouse, Gem, MessageCircle
 } from 'lucide-react';
+import { businesses, properties, destinations, stays, transportServices, marketplaceItems, marketplaceProducts, events, creators, communityGroups, datingProfiles, jobCandidates, campaigns, notifications, subscriptionPlans, dealerships, carListings, boostPackages, microTasks, affiliateData, sellerStats, rewardStats, stories, amplifyCampaigns, requestsForQuoteData, quoteResponsesData } from './data/seeds';
+import { missingBusinesses } from './data/missingSeeds';
+import { additionalPremiumBusinesses } from './data/additionalPremiumSeeds';
+import { retailers, retailersBusinesses, retailers_expanded, allRetailers } from './data/retailSeeds';
+import { professionals } from './data/businessSeeds';
+import { nightlifeVenues } from './data/nightlifeSeeds';
+import { freightHaulageCompanies, logisticsWarehousingCompanies, courierDeliveryCompanies, privateDriversCompanies, airportTransfersCompanies, shuttleMinibusCompanies, tourSightseeingCompanies, evChargingStations, helicopterCharters } from './data/transportSeeds';
+import { familyServices, childcareSchools, communitycentres, religiouscentres, playcenters, afterschoolprograms, familyentertainment } from './data/familyKidsSeeds';
+import { hotelsLodges, guestHousesBBs, safarisGameReserves, tourOperatorsGuides, scenicRoutesAdventure, yachtBoatCharters, privateJetAirCharter } from './data/tourismTravelSeeds';
+import { clinicsSpecialists, dentists, pharmacies, mentalHealthProfessionals, wellnessRetreats, veterinaryClinics } from './data/healthMedicalSeeds';
+import { gynaecologists, paediatricians, orthopaedicSurgeons, dermatologists, cardiologists, fertilityClinics, optometristsOphthalmologists } from './data/specialistMedicalSeeds';
+import { generalPractioners, paediatricians as paeds, dermatologists as derms, cardiologists as cards, fertilityClinics as fcs, physiotherapists, psychologists, psychiatrists, dieticians, diagnosticLabs, radiology, homeCarServices, oldAgeHomes, rehabilitationCentres, optometrists, chiropractors } from './data/expandedMedicalSeeds';
+import { executiveRecruitment, hospitalityStaffing, skilledTradesRecruitment, temporaryContractStaffing, hrConsultingOutsourcing } from './data/recruitmentAndStaffingSeeds';
+import { cleaningServices, gardeningLandscaping, homeMaintenanceHandyman, nanniesCaregiverss, elderlyCareServices } from './data/domesticAndPersonalServicesSeeds';
+import { convenienceStores, superettes, spazaShops, butcheries, bakeries, liquorStores } from './data/convenienceAndDailyNeedsSeeds';
+import { gynecologists, maternityClinics, midwivesDoulas, creches, aftercareTutors, kidsActivityCentres } from './data/womenHealthAndMaternalSeeds';
+import { buildersContractors, plumbingElectrical, roofingRenovations, interiorDesigners, landscapingGardening, smartHomeInstallation, customFurnitureMakers, poolGardenDesigners } from './data/homeConstructionTradesSeeds';
+import { legalServices, accountingAndTax, consultants, marketingAndAdvertising, techAndITServices, architectsAndDesigners, businessBrokersAndAdvisors, lifeCoachesAndMentors, translationAndLanguageServices, prAndMediaConsultants } from './data/businessProfessionalSeeds';
+import { luxuryEVDealerships, carHireAndRentals, serviceAndRepairs, carDetailingAndMaintenance, limoAndExoticRentals, motorcycleAndATVRentals } from './data/automotiveSeeds';
+import { cropAndFarmSuppliers, livestockServices, agritechAndMachinery, miningSuppliers, miningEquipmentAndMachinery, industrialToolsAndMachinery } from './data/agriMiningIndustrialSeeds';
+import { barsAndCocktailLounges, clubsAndLounges, liveMusicAndVenues, theatersAndCinemas, gamingAndVRCenters, danceStudiosAndPerformances, musicLessonsAndTeachers } from './data/nightlifeEntertainmentSeeds';
+import { conciergeServices, exclusiveExperiences, personalAssistants, luxuryClubsAndMemberships, wineTastingAndVineyards, golfAndCountryClubs, personalStylingAndWardrobeConsultants } from './data/luxuryLifestyleSeeds';
+import { banksAndBranches, loanProviders, insuranceBrokers, investmentAndFinancialAdvisors, cryptoAndBlockchainServices, estatePlanningAndWills, taxConsultantsAndAdvisors } from './data/financeMoneyServicesSeeds';
+import { boutiquesAndFashion, homeAndDecorStores, grocersAndMarkets, luxuryProductsAndGifts, ecoAndSustainableProducts, onlineMarketplaces } from './data/shoppingRetailSeeds';
+import { estateAgents, propertyRentals, commercialProperty, propertyManagementAndTenants, landAndPlots, luxuryHomesAndVillas, apartmentsAndLofts } from './data/realEstatePropertySeeds';
+import { municipalServices, licensingAndRegistrations, publicHealthServices } from './data/governmentPublicServicesSeeds';
+import { softwareDevelopment, webAndDesignStudios, digitalMarketingAgencies, photographyAndVideography, dronePhotographyVideography, appDevelopmentSoftwareHouses, aiAndDataScienceServices, gamingAndEsports, virtualAugmentedRealityServices } from './data/itMediaCreativeSeeds';
+import { jobListings, jobSeekerProfiles, recruitmentHRServices, internshipsApprenticeships, careerCoachingGuidance } from './data/jobsAndCareersSeeds';
+import { premiumWineHouses, craftDistilleries, luxurycocktailBars, wineTastingExperiences, spiritsInvestment } from './data/wineAndSpiritsSeeds';
 import { Business, Category, CategorySubcategories, ListingTier, SubscriptionDuration, PRICING_STRUCTURE, Property, Job, Destination, MarketplaceItem, LoyaltyStatus, Event, Creator, CommunityGroup, DatingProfile, Candidate, Campaign, Notification, SubscriptionPlan, Dealership, CarListing, BoostPackage, MicroTask, MPUMALANGA_AREAS, Story, Retailer, ProfessionalService, NightlifeVenue } from './types';
 import { SectionTitle, LuxuryCard, CategoryCard, PrimaryButton, MarketButton, HeroFilterHeader, SponsoredBanner, AdvancedFilterPanel, FilterState, AuthModal } from './components/Shared';
 import PremiumAddBusinessView from './components/PremiumAddBusinessView';
@@ -39,23 +68,6 @@ import ConciergeAnimated from './components/ConciergeAnimated';
 import { LoadingSpinner } from './components/LoadingSpinner';
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
-import { 
-  businesses, properties, destinations, stays, transportServices, 
-  marketplaceItems, sellers, marketplaceProducts, events, creators, 
-  communityGroups, datingProfiles, jobCandidates, campaigns, 
-  notifications, subscriptionPlans, dealerships, carListings, 
-  boostPackages, users, microTasks, affiliateData, sellerStats, 
-  rewardStats, stories, websiteOrders, requestsForQuoteData, 
-  quoteResponsesData, activityLogs, amplifyCampaigns 
-} from './data/seeds';
-
-// OPTIMIZED: Lazy-load seed data to avoid blocking initial page load
-// Transport seeds will be imported only when transport views are accessed
-const loadTransportSeeds = () => import('./data/transportSeeds');
-const loadTourismSeeds = () => import('./data/tourismTravelSeeds');
-const loadHealthSeeds = () => import('./data/healthMedicalSeeds');
-const loadExpandedMedicalSeeds = () => import('./data/expandedMedicalSeeds');
-const loadFamilySeeds = () => import('./data/familyKidsSeeds');
 
 // Lazy load heavy page components for faster initial load
 const EatsPage = lazy(() => import('./components/EatsPage'));
@@ -350,7 +362,7 @@ const REMOVED_ListYourBusinessView = ({ navigate, onAddBusiness }: { navigate: a
                     </div>
 
                     <div className="w-full md:w-2/3 p-8 bg-[#0a0a0a]">
-                        {!isLoggedIn && <div className="mb-4 p-3 bg-white/5 rounded flex items-center justify-between text-sm text-gray-200"> <div>Please sign in to apply for a listing.</div> <button onClick={() => { /* TODO: open auth */ }} className="text-white underline">Sign In</button> </div>}
+                        {!isLoggedIn && <div className="mb-4 p-3 bg-white/5 rounded flex items-center justify-between text-sm text-gray-200"> <div>Please sign in to apply for a listing.</div> <button onClick={() => handleOpenAuth('login')} className="text-white underline">Sign In</button> </div>}
                         {error && <div className="mb-4 p-3 bg-white/3 rounded text-gray-200">{error}</div>}
                         {step === 1 && (
                             <div className="space-y-6 animate-fade-in">
@@ -517,6 +529,7 @@ const CarsView = ({ navigate, favorites, toggleFavorite, onChat, activeArea, set
               const q = searchTerm.toLowerCase();
               const matchesSearch = car.title.toLowerCase().includes(q) || 
                                     car.dealer?.toLowerCase().includes(q) ||
+                                    car.fuel?.toLowerCase().includes(q) ||
                                     car.transmission?.toLowerCase().includes(q);
               if (!matchesSearch) return false;
             }
@@ -534,14 +547,15 @@ const CarsView = ({ navigate, favorites, toggleFavorite, onChat, activeArea, set
                 if (!isNaN(p) && p > filters.priceMax) return false;
             }
             if (filters.dealerTypes && filters.dealerTypes.length > 0) {
-                const dealerType = 'Local'; // Default dealer type
+                const dealerType = car.isPremium ? 'Premium' : car.isVerified ? 'Verified' : 'Local';
                 if (!filters.dealerTypes.includes(dealerType)) return false;
             }
             if (filters.mileageMax && car.mileage) {
                 const m = Number((car.mileage || '').replace(/[^0-9]/g, ''));
                 if (!isNaN(m) && m > filters.mileageMax) return false;
             }
-            // transmission filter
+            // fuel & transmission filters naive matching
+            if (filters.fuel && filters.fuel.length > 0 && car.fuel && !filters.fuel.includes(car.fuel)) return false;
             if (filters.transmission && filters.transmission.length > 0 && car.transmission && !filters.transmission.includes(car.transmission)) return false;
             return true;
         });
@@ -624,9 +638,15 @@ const CarsView = ({ navigate, favorites, toggleFavorite, onChat, activeArea, set
                     </div>
 
                     {mobileFiltersOpen && (
-                        <div className="fixed inset-0 z-50 lg:hidden bg-black/60 p-4">
-                            <div className="max-w-md mx-auto">
-                                <CarFilters cars={carListings} filters={filters} setFilters={setFilters} onApply={() => setMobileFiltersOpen(false)} />
+                        <div className="fixed inset-0 z-50 lg:hidden bg-black/60 backdrop-blur-sm p-4 flex items-end">
+                            <div className="w-full max-w-md mx-auto bg-black rounded-t-2xl border border-white/10">
+                                <div className="p-4 border-b border-white/10 flex justify-between items-center">
+                                    <h3 className="text-white font-bold">Filters</h3>
+                                    <button onClick={() => setMobileFiltersOpen(false)} className="text-gray-400 hover:text-white">✕</button>
+                                </div>
+                                <div className="max-h-[70vh] overflow-y-auto p-4">
+                                    <CarFilters cars={carListings} filters={filters} setFilters={setFilters} onApply={() => setMobileFiltersOpen(false)} />
+                                </div>
                             </div>
                         </div>
                     )}
@@ -1273,17 +1293,17 @@ const DirectoryView = ({ navigate, favorites, toggleFavorite, businesses, initia
         { label: Category.ManufacturingWholesaleSuppliers, icon: AgricultureIcon },
         { label: Category.CommunityAndOrganisations, icon: FamilyIcon },
         { label: Category.GovernmentAndPublicServices, icon: GovIcon },
-        { label: Category.EventsExperiencesAndOccasions, icon: Calendar },
-        { label: Category.SportsFitnessAndRecreation, icon: Activity },
-        { label: Category.PetsVeterinaryAndAnimalCare, icon: Dog },
-        { label: Category.SecurityProtectionAndResponse, icon: Shield },
-        { label: Category.EnergyWaterAndSustainability, icon: Droplets },
-        { label: Category.CreatorEconomyAndTalent, icon: Sparkles },
+        { label: Category.EventsExperiencesAndOccasions, icon: EventIcon },
+        { label: Category.SportsFitnessAndRecreation, icon: SportsIcon },
+        { label: Category.PetsVeterinaryAndAnimalCare, icon: PetsIcon },
+        { label: Category.SecurityProtectionAndResponse, icon: SecurityIcon },
+        { label: Category.EnergyWaterAndSustainability, icon: EnergyIcon },
+        { label: Category.CreatorEconomyAndTalent, icon: CreatorIcon },
         { label: Category.RecruitmentAndStaffing, icon: RecruitmentIcon },
-        { label: Category.DomesticAndPersonalServices, icon: DomesticServicesIcon },
+        { label: Category.DomesticAndPersonalServices, icon: DomesticIcon },
         { label: Category.ConvenienceAndDailyNeeds, icon: ConvenienceIcon },
         { label: Category.WomenHealthAndMaternal, icon: HealthIcon },
-        { label: Category.JobsAndCareers, icon: Briefcase }
+        { label: Category.JobsAndCareers, icon: JobsIcon }
     ];
 
     const categoryDescriptions: Record<string,string> = {
@@ -2813,17 +2833,172 @@ function App() {
   const [selectedBusinessId, setSelectedBusinessId] = useState<string | null>(null);
 
   // OPTIMIZED: Memoize seed data merging to prevent recalculation on every render
-  // OPTIMIZED: Start with just core businesses, load seed data on demand
-  // This dramatically improves initial page load time
-  const localBusinesses = useMemo(() => {
-    // Base businesses always loaded
-    let allBusinesses = [...businesses];
-    
-    // Since seed data is now lazy-loaded, we'll populate this incrementally
-    // For now, just include the core businesses array
-    // Specialty data will be loaded when users navigate to those specific pages
-    return allBusinesses;
-  }, []);
+  const localBusinesses = useMemo(() => [
+    ...businesses,
+    ...missingBusinesses,
+    ...freightHaulageCompanies,
+    ...logisticsWarehousingCompanies,
+    ...courierDeliveryCompanies,
+    ...privateDriversCompanies,
+    ...airportTransfersCompanies,
+    ...shuttleMinibusCompanies,
+    ...tourSightseeingCompanies,
+    ...evChargingStations,
+    ...helicopterCharters,
+    ...familyServices,
+    ...childcareSchools,
+    ...communitycentres,
+    ...religiouscentres,
+    ...playcenters,
+    ...afterschoolprograms,
+    ...familyentertainment,
+    ...hotelsLodges,
+    ...guestHousesBBs,
+    ...safarisGameReserves,
+    ...tourOperatorsGuides,
+    ...scenicRoutesAdventure,
+    ...yachtBoatCharters,
+    ...privateJetAirCharter,
+    ...clinicsSpecialists,
+    ...dentists,
+    ...pharmacies,
+    ...mentalHealthProfessionals,
+    ...wellnessRetreats,
+    ...veterinaryClinics,
+    ...generalPractioners,
+    ...paeds,
+    ...derms,
+    ...cards,
+    ...fcs,
+    ...physiotherapists,
+    ...psychologists,
+    ...psychiatrists,
+    ...dieticians,
+    ...diagnosticLabs,
+    ...radiology,
+    ...homeCarServices,
+    ...oldAgeHomes,
+    ...rehabilitationCentres,
+    ...optometrists,
+    ...chiropractors,
+    ...buildersContractors,
+    ...plumbingElectrical,
+    ...roofingRenovations,
+    ...interiorDesigners,
+    ...landscapingGardening,
+    ...smartHomeInstallation,
+    ...customFurnitureMakers,
+    ...poolGardenDesigners,
+    ...legalServices,
+    ...accountingAndTax,
+    ...consultants,
+    ...marketingAndAdvertising,
+    ...techAndITServices,
+    ...architectsAndDesigners,
+    ...businessBrokersAndAdvisors,
+    ...lifeCoachesAndMentors,
+    ...translationAndLanguageServices,
+    ...prAndMediaConsultants,
+    ...luxuryEVDealerships,
+    ...carHireAndRentals,
+    ...serviceAndRepairs,
+    ...carDetailingAndMaintenance,
+    ...limoAndExoticRentals,
+    ...motorcycleAndATVRentals,
+    ...cropAndFarmSuppliers,
+    ...livestockServices,
+    ...agritechAndMachinery,
+    ...miningSuppliers,
+    ...miningEquipmentAndMachinery,
+    ...industrialToolsAndMachinery,
+    ...barsAndCocktailLounges,
+    ...clubsAndLounges,
+    ...liveMusicAndVenues,
+    ...theatersAndCinemas,
+    ...gamingAndVRCenters,
+    ...danceStudiosAndPerformances,
+    ...musicLessonsAndTeachers,
+    ...conciergeServices,
+    ...exclusiveExperiences,
+    ...personalAssistants,
+    ...luxuryClubsAndMemberships,
+    ...wineTastingAndVineyards,
+    ...golfAndCountryClubs,
+    ...personalStylingAndWardrobeConsultants,
+    ...banksAndBranches,
+    ...loanProviders,
+    ...insuranceBrokers,
+    ...investmentAndFinancialAdvisors,
+    ...cryptoAndBlockchainServices,
+    ...estatePlanningAndWills,
+    ...taxConsultantsAndAdvisors,
+    ...allRetailers,
+    ...boutiquesAndFashion,
+    ...homeAndDecorStores,
+    ...grocersAndMarkets,
+    ...luxuryProductsAndGifts,
+    ...ecoAndSustainableProducts,
+    ...onlineMarketplaces,
+    ...estateAgents,
+    ...propertyRentals,
+    ...commercialProperty,
+    ...propertyManagementAndTenants,
+    ...landAndPlots,
+    ...luxuryHomesAndVillas,
+    ...apartmentsAndLofts,
+    ...municipalServices,
+    ...licensingAndRegistrations,
+    ...publicHealthServices,
+    ...softwareDevelopment,
+    ...webAndDesignStudios,
+    ...digitalMarketingAgencies,
+    ...photographyAndVideography,
+    ...dronePhotographyVideography,
+    ...appDevelopmentSoftwareHouses,
+    ...aiAndDataScienceServices,
+    ...gamingAndEsports,
+    ...virtualAugmentedRealityServices,
+    ...jobListings,
+    ...jobSeekerProfiles,
+    ...recruitmentHRServices,
+    ...internshipsApprenticeships,
+    ...careerCoachingGuidance,
+    ...premiumWineHouses,
+    ...craftDistilleries,
+    ...luxurycocktailBars,
+    ...wineTastingExperiences,
+    ...spiritsInvestment,
+    ...executiveRecruitment,
+    ...hospitalityStaffing,
+    ...skilledTradesRecruitment,
+    ...temporaryContractStaffing,
+    ...hrConsultingOutsourcing,
+    ...cleaningServices,
+    ...gardeningLandscaping,
+    ...homeMaintenanceHandyman,
+    ...nanniesCaregiverss,
+    ...elderlyCareServices,
+    ...convenienceStores,
+    ...superettes,
+    ...spazaShops,
+    ...butcheries,
+    ...bakeries,
+    ...liquorStores,
+    ...gynecologists,
+    ...maternityClinics,
+    ...midwivesDoulas,
+    ...creches,
+    ...aftercareTutors,
+    ...kidsActivityCentres,
+    ...gynaecologists,
+    ...paediatricians,
+    ...orthopaedicSurgeons,
+    ...dermatologists,
+    ...cardiologists,
+    ...fertilityClinics,
+    ...optometristsOphthalmologists,
+    ...additionalPremiumBusinesses,
+  ], []);
 
   // OPTIMIZED: Memoize frequently-used filtered lists to avoid recalculation
   const categoryListings = useMemo(() => 
@@ -2976,7 +3151,7 @@ function App() {
   };
 
   const handleOpenAuth = (mode: 'login' | 'signup') => { setAuthMode(mode); setIsAuthOpen(true); setIsMenuOpen(false); };
-  const handleAddBusiness = (newBusiness: Business) => { /* TODO: Add business to state or backend */ };
+  const handleAddBusiness = (newBusiness: Business) => { setLocalBusinesses(prev => [newBusiness, ...prev]); };
     const handleChatSend = async (msg?: string) => {
             const userMsg = msg || chatInput;
             if (!userMsg.trim()) return;
@@ -3391,7 +3566,7 @@ function App() {
     case 'tourism-experience-detail': return <Suspense fallback={<LoadingSpinner />}><TourismExperienceDetailView navigate={handleNavigate} onClose={() => handleNavigate('tourism')} /></Suspense>;
     case 'experience-detail': return <Suspense fallback={<LoadingSpinner />}><ExperienceDetailPremiumLazy id={selectedBusinessId} navigate={handleNavigate} /></Suspense>;
     case 'jobs': return <Suspense fallback={<LoadingSpinner />}><StaysPage navigate={handleNavigate} /></Suspense>;
-    case 'stay-detail': return <StayDetail business={stays.find(s=>s.id===selectedBusinessId) as any} onClose={() => handleNavigate('stays')} />;
+    case 'stay-detail': return <StayDetail business={stays.find(s=>s.id===selectedBusinessId)} onClose={() => handleNavigate('stays')} />;
     case 'transport': return <Suspense fallback={<LoadingSpinner />}><TransportLandingPageLazy navigate={handleNavigate} /></Suspense>;
     case 'transport-detail': return <Suspense fallback={<LoadingSpinner />}><TransportDetailPremiumLazy id={selectedBusinessId || ''} navigate={handleNavigate} /></Suspense>;
     case 'marketplace': return <MarketplaceLanding />;
