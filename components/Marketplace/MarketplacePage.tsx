@@ -127,52 +127,34 @@ export default function MarketplacePage() {
           onSelect={(c) => setFilters({ ...filters, category: c })}
         />
 
-        {/* MOBILE/TABLET: Show Filter Toggle Button Above Products */}
-        <div className="lg:hidden mb-6">
-          <button
-            onClick={() => setShowMobileFilters(!showMobileFilters)}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#d4af37] to-[#ffd700] text-black rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-[#ffd700]/30 duration-300 border border-[#d4af37]"
-          >
-            <Menu size={20} />
-            {showMobileFilters ? 'Hide Filters' : 'Show Filters'}
-          </button>
-        </div>
-
-        {/* TABLET: Show Collapsible Filter Bar */}
-        {showMobileFilters && (
-          <div className="lg:hidden mb-6 bg-[#121212] rounded-lg border border-[#d4af37]/20 p-4">
-            <FiltersPanel filters={filters} setFilters={setFilters} />
-          </div>
-        )}
-
-        <div className="flex gap-6">
-          {/* DESKTOP ONLY: Sticky Sidebar Filters */}
-          <div className="hidden lg:block">
+        {/* CONTAINER: Stack vertically on mobile/tablet, horizontally on desktop */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          
+          {/* DESKTOP ONLY: Sticky Sidebar Filters (RIGHT SIDE ON DESKTOP) */}
+          <div className="hidden lg:block w-80 order-2 lg:order-1">
             <FiltersPanel filters={filters} setFilters={setFilters} />
           </div>
 
-          {/* MOBILE: Slide-out Modal Filter Panel */}
-          {showMobileFilters && (
-            <div className="fixed inset-0 bg-black/70 z-40 lg:hidden" onClick={() => setShowMobileFilters(false)}>
-              <div
-                className="fixed left-0 top-0 bottom-0 w-72 bg-[#121212] border-r border-[#d4af37]/20 overflow-y-auto animate-slide-in"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="sticky top-0 p-4 border-b border-[#d4af37]/20 flex justify-between items-center bg-[#121212]">
-                  <h3 className="font-semibold text-white text-lg">Filters</h3>
-                  <button onClick={() => setShowMobileFilters(false)} className="text-[#cfcfcf] hover:text-white transition-colors">
-                    <X size={24} />
-                  </button>
-                </div>
-                <div className="p-4">
-                  <FiltersPanel filters={filters} setFilters={setFilters} />
-                </div>
+          {/* MOBILE/TABLET: Filter Bar ABOVE Products (FULL WIDTH) */}
+          <div className="lg:hidden w-full order-1 lg:order-2">
+            <button
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#d4af37] to-[#ffd700] text-black rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-[#ffd700]/30 duration-300 border border-[#d4af37] mb-4"
+            >
+              <Menu size={20} />
+              {showMobileFilters ? 'Hide Filters' : 'Show Filters'}
+            </button>
+
+            {/* MOBILE/TABLET: Show Inline Filters When Toggled */}
+            {showMobileFilters && (
+              <div className="w-full mb-4 bg-[#121212] rounded-lg border border-[#d4af37]/20 p-4">
+                <FiltersPanel filters={filters} setFilters={setFilters} />
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
-          {/* PRODUCTS: Always Full Width */}
-          <main className="w-full">
+          {/* PRODUCTS: BELOW Filters on Mobile/Tablet, BESIDE Sidebar on Desktop */}
+          <main className="w-full order-3">
             {/* Sort Bar */}
             <div className="flex justify-between items-center mb-6 pb-6 border-b border-[#d4af37]/10">
               <p className="text-sm text-[#cfcfcf] font-medium">{filtered.length} curated products</p>
