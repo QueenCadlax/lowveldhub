@@ -123,7 +123,7 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                     ))}
                 </ul>
                 <button 
-                    onClick={() => { setFormData(prev => ({ ...prev, membership: tier })); setShowForm(true); }}
+                    onClick={() => window.location.href = 'mailto:info@lowveldhub.co.za?subject=Application%20to%20List%20My%20Business%20on%20LowveldHub'}
                     className={`w-full py-2 rounded-lg font-bold text-sm transition-colors ${tier === ListingTier.Platinum ? 'bg-transparent border border-white/10 text-gray-200 hover:border-purple-500/40' : 'bg-gold-500 text-black hover:bg-gold-600'}`}
                 >
                     {tier === ListingTier.Platinum ? 'Request Review' : `Apply – ${label}`}
@@ -181,12 +181,12 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                             List your business on LowveldHub and reach discerning customers. Every listing is reviewed and verified to maintain quality and trust.
                         </p>
                         <div className="flex flex-col md:flex-row items-center justify-center gap-4 pt-4">
-                            <button 
-                                onClick={() => setShowForm(true)} 
+                            <a 
+                                href="mailto:info@lowveldhub.co.za?subject=Application%20to%20Join%20LowveldHub"
                                 className="bg-gold-500 text-black px-8 py-3 rounded-full font-bold hover:bg-gold-600 transition-colors text-lg"
                             >
-                                Start Your Application
-                            </button>
+                                Apply via Email
+                            </a>
                             <button 
                                 onClick={() => document.getElementById('packages-preview')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="border border-white/30 text-white px-8 py-3 rounded-full font-bold hover:border-gold-500 transition-colors text-lg"
@@ -231,10 +231,10 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                         <h2 className="text-3xl font-serif text-white mb-12 text-center">How It Works</h2>
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                             {[
-                                { step: '1', title: 'Business Details', desc: 'Tell us about your business and where you operate' },
-                                { step: '2', title: 'Media & Branding', desc: 'Showcase your brand with logo and photos' },
-                                { step: '3', title: 'Select Package', desc: 'Choose the plan that fits your needs' },
-                                { step: '4', title: 'Go Live', desc: 'Your business appears on LowveldHub' }
+                                { step: '1', title: 'Apply', desc: 'Send us your business details via email' },
+                                { step: '2', title: 'Review', desc: 'We assess quality, branding, and credibility' },
+                                { step: '3', title: 'Approval', desc: 'Your business is approved and onboarded' },
+                                { step: '4', title: 'Go Live', desc: 'You are featured on LowveldHub' }
                             ].map((item, i) => (
                                 <div key={i} className="relative">
                                     <div className="w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center font-bold mb-4 mx-auto">{item.step}</div>
@@ -243,6 +243,137 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                                 </div>
                             ))}
                         </div>
+                    </section>
+
+                    {/* CONTACT SECTION - LUXURY HOSPITALITY GRADE */}
+                    <section className="mt-24 pt-20 relative">
+                        {/* Decorative top divider */}
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/40 to-transparent"></div>
+
+                        <div className="max-w-4xl mx-auto space-y-16">
+                            {/* PREMIUM HEADING WITH ACCENT */}
+                            <div className="text-center space-y-6">
+                                <div className="inline-block">
+                                    <p className="text-xs uppercase tracking-[0.2em] text-gold-400 font-semibold">The Invitation</p>
+                                </div>
+                                <h2 className="text-5xl md:text-6xl font-serif text-white leading-tight">
+                                    Apply to Join<br />Our Curated Network
+                                </h2>
+                                <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+                                    We invite exceptional businesses to become part of LowveldHub — a carefully curated ecosystem where quality meets opportunity.
+                                </p>
+                            </div>
+
+                            {/* DUAL COLUMN LAYOUT - LEFT: PROCESS, RIGHT: CTA */}
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                                
+                                {/* LEFT: PROCESS & BENEFITS */}
+                                <div className="space-y-8">
+                                    <div>
+                                        <h3 className="text-2xl font-serif text-white mb-6">The Process</h3>
+                                        <div className="space-y-6">
+                                            {[
+                                                { num: '01', title: 'You Apply', desc: 'Email us your business details. No forms, no hassle.' },
+                                                { num: '02', title: 'We Review', desc: 'Our team assesses quality, branding, and fit with our community.' },
+                                                { num: '03', title: 'We Connect', desc: 'If approved, we guide you through a seamless onboarding.' },
+                                                { num: '04', title: 'You Thrive', desc: 'Your business joins an elite network of curated businesses.' }
+                                            ].map((step, i) => (
+                                                <div key={i} className="flex gap-4">
+                                                    <div className="text-gold-400 font-serif text-2xl font-bold min-w-12">{step.num}</div>
+                                                    <div>
+                                                        <h4 className="text-white font-semibold mb-1">{step.title}</h4>
+                                                        <p className="text-gray-400 text-sm">{step.desc}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* TRUST BADGES */}
+                                    <div className="bg-white/3 border border-white/10 rounded-xl p-6 space-y-4">
+                                        <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">Why Partner With Us</p>
+                                        <ul className="space-y-3">
+                                            {[
+                                                'Verified customer base seeking premium experiences',
+                                                'AI-powered recommendations to drive real business',
+                                                'No commission on direct sales',
+                                                'Exclusive community of 50+ curated businesses'
+                                            ].map((item, i) => (
+                                                <li key={i} className="flex items-start gap-3">
+                                                    <span className="text-gold-400 font-bold mt-0.5">✓</span>
+                                                    <span className="text-gray-300 text-sm">{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                {/* RIGHT: CTA SECTION */}
+                                <div className="bg-gradient-to-br from-gold-500/10 via-transparent to-gold-500/5 border border-gold-500/20 rounded-2xl p-10 lg:p-12 space-y-8 relative overflow-hidden">
+                                    {/* Subtle background accent */}
+                                    <div className="absolute top-0 right-0 w-40 h-40 bg-gold-500/5 rounded-full blur-3xl -z-10"></div>
+                                    
+                                    {/* PRIMARY CTA */}
+                                    <div className="space-y-4">
+                                        <p className="text-xs uppercase tracking-widest text-gold-400 font-semibold">Ready?</p>
+                                        <a 
+                                            href="mailto:info@lowveldhub.co.za?subject=Application%20to%20Join%20LowveldHub&body=Hello%20LowveldHub%20Team%2C%0A%0AI%20would%20like%20to%20apply%20to%20join%20LowveldHub.%20Here%20are%20my%20business%20details%3A%0A%0ABusinessName%3A%0ALocation%3A%0ACategory%3A%0AContact%20Details%3A%0ABrief%20Description%3A%0A%0AThank%20you"
+                                            className="block w-full bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-600 hover:to-gold-500 text-black font-bold py-4 px-6 rounded-xl text-center transition-all transform hover:scale-105 shadow-xl hover:shadow-gold-500/30 text-lg"
+                                        >
+                                            Apply Now
+                                        </a>
+                                    </div>
+
+                                    {/* EMAIL DISPLAY - ELEGANT */}
+                                    <div className="pt-6 border-t border-white/10 text-center space-y-3">
+                                        <p className="text-xs text-gray-500 uppercase tracking-widest">Or email directly</p>
+                                        <a 
+                                            href="mailto:info@lowveldhub.co.za"
+                                            className="inline-block text-gold-400 hover:text-gold-300 transition-colors"
+                                        >
+                                            <p className="text-xl font-serif font-bold">info@lowveldhub.co.za</p>
+                                        </a>
+                                    </div>
+
+                                    {/* WHAT TO SEND */}
+                                    <div className="space-y-4 pt-4 border-t border-white/10">
+                                        <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">In Your Email, Please Include</p>
+                                        <div className="space-y-2">
+                                            {[
+                                                'Business Name & Website',
+                                                'Location (Area in Mpumalanga)',
+                                                'Category / Industry',
+                                                'Contact Person & Details',
+                                                '2–5 High-Quality Images',
+                                                'Brief Description (50–100 words)'
+                                            ].map((item, i) => (
+                                                <div key={i} className="flex items-center gap-2">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-gold-400"></div>
+                                                    <span className="text-gray-300 text-sm">{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* RESPONSE TIME - PREMIUM WORDING */}
+                                    <div className="pt-4 border-t border-white/10 text-center">
+                                        <p className="text-xs text-gray-600">
+                                            Our team reviews applications carefully.<br />You'll hear from us within <span className="text-gold-400">24–72 hours</span>.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* EXCLUSIVITY STATEMENT - CENTERED BELOW */}
+                            <div className="text-center pt-12 border-t border-white/10">
+                                <p className="text-gray-500 text-sm leading-relaxed max-w-2xl mx-auto">
+                                    LowveldHub is a curated ecosystem, not a directory. We maintain rigorous standards for quality, presentation, and customer experience. Only exceptional businesses are invited to join.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Decorative bottom divider */}
+                        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/40 to-transparent"></div>
                     </section>
                 </div>
             ) : (

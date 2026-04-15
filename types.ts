@@ -326,21 +326,21 @@ export const PRICING_STRUCTURE: Record<ListingTier, TierPricing> = {
     note: 'Only available once per business; converts automatically to Paid after 7 days'
   },
   [ListingTier.Premium]: {
-    price: 700,
+    price: 799,
     duration: SubscriptionDuration.SixMonths,
     features: ['Business Name', 'Address', 'Contact', 'Images', 'Description', 'Social Links'],
     visibility: 'Featured',
     commission: 100
   },
   [ListingTier.Elite]: {
-    price: 1200,
+    price: 1299,
     duration: SubscriptionDuration.TwelveMonths,
     features: ['All Premium Features', 'Priority Placement', 'ELITE Badge', 'Top Listing in Category', 'Highlighted Contact'],
     visibility: 'Maximum Exposure',
     commission: 150
   },
   [ListingTier.Platinum]: {
-    price: 'Custom',
+    price: 1999,
     duration: SubscriptionDuration.TwelveMonths,
     features: ['All Elite Features', 'Homepage Spotlight', 'Newsletter Feature', 'AI Spotlight', 'Marketing Boost'],
     visibility: 'Exclusive',

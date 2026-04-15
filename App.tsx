@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'rea
 import { 
   Search, Menu, X, Globe, Briefcase, Home, Calendar, Map, 
   ShoppingBag, CreditCard, User, Utensils, Sparkles, Car, 
-    MessageSquare, ChevronRight, ChevronLeft, Mic, Bell, Send, LayoutDashboard, Plus, MapPin, Crown, Gift, Rocket, Check, CheckCircle, Heart, Users, Zap, Briefcase as BriefcaseIcon, Camera, Hammer, Phone, Mail, Award, Gauge, Settings, Activity, Bed, Plane, Star, Filter, Quote, Copy, DollarSign, List, BarChart3, ArrowUpRight, ArrowDownLeft, TrendingUp, Play, Clock, Facebook, Instagram, Linkedin, Twitter, LogIn, Upload, Image as ImageIcon, Video, Youtube, Share2,
+    MessageSquare, ChevronRight, ChevronLeft, Mic, Bell, Send, LayoutDashboard, Plus, MapPin, Crown, Gift, Rocket, Check, CheckCircle, Heart, Users, Zap, Briefcase as BriefcaseIcon, Camera, Hammer, Phone, Mail, Award, Gauge, Settings, Activity, Bed, Plane, Star, Filter, Quote, Copy, DollarSign, List, BarChart3, ArrowUpRight, ArrowDownLeft, TrendingUp, Play, Clock, Facebook, Instagram, Linkedin, Twitter, LogIn, Upload, Image as ImageIcon, Video, Youtube, Share2, Music,
   GraduationCap, Stethoscope, Scale, Scissors, Truck, Wrench, Tractor, Shield, Grid, MoreHorizontal, Tag, ChevronDown as ChevronDownIcon, ArrowLeft, RefreshCw,
   Building2, ShieldCheck, Banknote, Cpu, Droplets, PlaneLanding, FileText, Wind, 
   Store, Shirt, Smartphone, Armchair, Laptop, Pill, Smile, Hospital, Dog,
   Info, Coffee, Wine, Landmark, HardHat, Gavel, Calculator, BookOpen, Warehouse, Gem, MessageCircle
 } from 'lucide-react';
-import { businesses, properties, destinations, stays, transportServices, marketplaceItems, marketplaceProducts, events, creators, communityGroups, datingProfiles, jobCandidates, campaigns, notifications, subscriptionPlans, dealerships, carListings, boostPackages, microTasks, affiliateData, sellerStats, rewardStats, stories, amplifyCampaigns, requestsForQuoteData, quoteResponsesData } from './data/seeds';
+import { businesses, properties, destinations, stays, transportServices, marketplaceItems, marketplaceProducts, events, creators, communityGroups, datingProfiles, jobCandidates, campaigns, notifications, subscriptionPlans, dealerships, carListings, boostPackages, microTasks, sellerStats, rewardStats, stories, amplifyCampaigns, requestsForQuoteData, quoteResponsesData } from './data/seeds';
 import { missingBusinesses } from './data/missingSeeds';
 import { additionalPremiumBusinesses } from './data/additionalPremiumSeeds';
 import { retailers, retailersBusinesses, retailers_expanded, allRetailers } from './data/retailSeeds';
@@ -66,7 +66,6 @@ import { MarketplaceLanding } from './components/Marketplace';
 import { AIReviewSummary } from './components/BusinessExtras';
 import ConciergeAnimated from './components/ConciergeAnimated';
 import { LoadingSpinner } from './components/LoadingSpinner';
-import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
 
 // Lazy load heavy page components for faster initial load
@@ -304,7 +303,7 @@ const REMOVED_ListYourBusinessView = ({ navigate, onAddBusiness }: { navigate: a
                         <h1 className="text-3xl md:text-4xl font-serif mb-4">List Your Business on LowveldHub</h1>
                         <p className="text-gray-300 max-w-xl mx-auto">Join Mpumalanga’s trusted digital ecosystem. Every listing is reviewed. Quality is protected.</p>
                         <div className="mt-6 flex items-center justify-center gap-4">
-                            <button onClick={() => handleStartApplication()} className="bg-white text-black px-6 py-3 rounded-full font-bold">Start Application</button>
+                            <a href="mailto:info@lowveldhub.co.za?subject=Application%20to%20List%20My%20Business" className="bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors">Start Application</a>
                             <button onClick={() => { /* smooth scroll to packages */ const el = document.getElementById('packages'); if(el) el.scrollIntoView({behavior:'smooth'}); }} className="text-gray-300 underline text-sm">View Listing Packages</button>
                         </div>
                         <div className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-400">
@@ -338,163 +337,118 @@ const REMOVED_ListYourBusinessView = ({ navigate, onAddBusiness }: { navigate: a
                     </section>
                 </div>
             ) : (
-                <div className="max-w-4xl mx-auto bg-[#121212] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row min-h-[600px]">
-                    <div className="w-full md:w-1/3 bg-white/5 p-8 border-b md:border-b-0 md:border-r border-white/10 flex flex-col">
-                        <h3 className="text-xl font-serif text-white mb-6">Listing Process</h3>
-                        <div className="space-y-6 relative">
-                            <div className="absolute left-[15px] top-2 bottom-2 w-0.5 bg-white/10 z-0"></div>
+                <div className="w-full bg-[#0a0a0a]">
+                    {/* HERO SECTION */}
+                    <section className="max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-32 text-center">
+                        <div className="inline-block mb-6 px-4 py-2 bg-gold-500/10 border border-gold-500/30 rounded-full">
+                            <span className="text-xs font-semibold tracking-widest text-gold-400 uppercase">curated network</span>
+                        </div>
+                        <h1 className="text-5xl md:text-6xl font-serif text-white mb-6 leading-tight">
+                            Join Mpumalanga's<br />Trusted Business Network
+                        </h1>
+                        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                            List your business on LowveldHub and reach discerning customers.<br />
+                            Every listing is reviewed and verified to maintain quality and trust.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a 
+                                href="mailto:info@lowveldhub.co.za?subject=Application%20to%20Join%20LowveldHub"
+                                className="px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-400 text-black font-bold uppercase tracking-wider text-sm rounded-lg hover:shadow-lg hover:shadow-gold-500/30 transition-all"
+                            >
+                                👉 Apply via Email
+                            </a>
+                            <button 
+                                onClick={() => {
+                                    document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-wider text-sm rounded-lg hover:border-white/40 transition-colors"
+                            >
+                                View Packages
+                            </button>
+                        </div>
+                    </section>
+
+                    {/* WHY PARTNER */}
+                    <section className="max-w-6xl mx-auto px-6 md:px-8 py-20 border-y border-white/10">
+                        <h2 className="text-4xl font-serif text-white mb-16 text-center">Why Partner With LowveldHub?</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                            <div className="flex flex-col">
+                                <div className="text-gold-500 font-serif text-3xl mb-4">01</div>
+                                <h3 className="text-xl font-semibold text-white mb-4">Unmatched Visibility</h3>
+                                <p className="text-gray-400 leading-relaxed">
+                                    Get discovered by customers actively searching for trusted businesses across Mpumalanga.
+                                </p>
+                            </div>
+                            <div className="flex flex-col">
+                                <div className="text-gold-500 font-serif text-3xl mb-4">02</div>
+                                <h3 className="text-xl font-semibold text-white mb-4">Verified Trust</h3>
+                                <p className="text-gray-400 leading-relaxed">
+                                    Our verification seal positions your brand as premium, professional, and reliable.
+                                </p>
+                            </div>
+                            <div className="flex flex-col">
+                                <div className="text-gold-500 font-serif text-3xl mb-4">03</div>
+                                <h3 className="text-xl font-semibold text-white mb-4">Real Business Growth</h3>
+                                <p className="text-gray-400 leading-relaxed">
+                                    Access marketing exposure, curated placement, and tools designed to grow your customer base.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* PACKAGES (KEPT) */}
+                    <section id="packages" className="max-w-6xl mx-auto px-6 md:px-8 py-20">
+                        <h2 className="text-4xl font-serif text-white mb-4 text-center">Listing Packages</h2>
+                        <p className="text-gray-400 text-center mb-16">Choose the plan that fits your business goals</p>
+                        {renderPackages()}
+                    </section>
+
+                    {/* HOW IT WORKS */}
+                    <section className="max-w-6xl mx-auto px-6 md:px-8 py-20 border-y border-white/10">
+                        <h2 className="text-4xl font-serif text-white mb-16 text-center">How It Works</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                             {[
-                                { n: 1, label: 'Business Details', desc: 'Basic info & location' },
-                                { n: 2, label: 'Media & Branding', desc: 'Images & contacts' },
-                                { n: 3, label: 'Membership', desc: 'Select your plan' }
-                            ].map((s) => (
-                                <div key={s.n} className={`relative z-10 flex gap-4 ${step >= s.n ? 'opacity-100' : 'opacity-40'}`}>
-                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${step > s.n ? 'bg-green-500 border-green-500 text-black' : step === s.n ? 'bg-gold-500 border-gold-500 text-black' : 'bg-black border-white/20 text-white'}`}>
-                                        {step > s.n ? <Check size={16} /> : s.n}
-                                    </div>
-                                    <div>
-                                        <div className={`text-sm font-bold ${step === s.n ? 'text-gold-400' : 'text-white'}`}>{s.label}</div>
-                                        <div className="text-xs text-gray-500">{s.desc}</div>
-                                    </div>
+                                { num: '1', title: 'Apply', desc: 'Send us your business details via email' },
+                                { num: '2', title: 'Review', desc: 'We verify quality, branding, and credibility' },
+                                { num: '3', title: 'Approval', desc: 'Your business is approved and onboarded' },
+                                { num: '4', title: 'Go Live', desc: 'You are featured on LowveldHub' }
+                            ].map((step, i) => (
+                                <div key={i} className="flex flex-col">
+                                    <div className="text-5xl font-serif text-gold-500/30 mb-4">{step.num}</div>
+                                    <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
+                                    <p className="text-gray-400 text-sm">{step.desc}</p>
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </section>
 
-                    <div className="w-full md:w-2/3 p-8 bg-[#0a0a0a]">
-                        {!isLoggedIn && <div className="mb-4 p-3 bg-white/5 rounded flex items-center justify-between text-sm text-gray-200"> <div>Please sign in to apply for a listing.</div> <button onClick={() => handleOpenAuth('login')} className="text-white underline">Sign In</button> </div>}
-                        {error && <div className="mb-4 p-3 bg-white/3 rounded text-gray-200">{error}</div>}
-                        {step === 1 && (
-                            <div className="space-y-6 animate-fade-in">
-                                <h3 className="text-2xl font-serif text-white mb-4">Tell us about your business</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-xs text-gold-400 font-bold uppercase tracking-widest mb-2">Business Name <span className="text-red-500">*</span></label>
-                                        <input 
-                                            type="text" 
-                                            value={formData.name}
-                                            onChange={e => setFormData({...formData, name: e.target.value})}
-                                            placeholder="e.g. Lowveld Logistics" 
-                                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-gold-500 outline-none transition-colors"
-                                        />
-                                        <select 
-                                            value={formData.subcategory}
-                                            onChange={e => setFormData({...formData, subcategory: e.target.value})}
-                                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-gold-500 outline-none transition-colors appearance-none mt-3"
-                                        >
-                                            <option value="" className="bg-black">Select Subcategory</option>
-                                            {(CategorySubcategories[formData.category] || []).map(sub => (
-                                              <option key={sub} value={sub} className="bg-black">{sub}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="flex justify-end pt-4">
-                                    <PrimaryButton onClick={() => setStep(2)}>Next Step <ChevronRight size={16}/></PrimaryButton>
-                                </div>
-                            </div>
-                        )}
+                    {/* OUR PROMISE */}
+                    <section className="max-w-4xl mx-auto px-6 md:px-8 py-20 text-center bg-white/3 rounded-2xl border border-white/10 my-20">
+                        <h2 className="text-3xl font-serif text-white mb-8">Our Promise</h2>
+                        <p className="text-lg text-gold-400 mb-6">Premium standard. Not limited access.</p>
+                        <p className="text-gray-400 leading-relaxed mb-8">
+                            LowveldHub is open to applications — but only verified excellence is listed. Every business undergoes a quality and credibility review to ensure we protect customer trust and maintain world-class standards.
+                        </p>
+                        <div className="h-px bg-white/10 my-8"></div>
+                        <p className="text-white font-semibold">
+                            We are not a classifieds site.
+                        </p>
+                        <p className="text-gold-500 font-serif text-xl">
+                            We are Mpumalanga's digital business ecosystem.
+                        </p>
+                    </section>
 
-                        {step === 2 && (
-                            <div className="space-y-6 animate-fade-in">
-                                <h3 className="text-2xl font-serif text-white mb-4">Media & Contact</h3>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-xs text-gold-400 font-bold uppercase tracking-widest mb-2">Phone</label>
-                                        <input 
-                                            type="tel" 
-                                            value={formData.phone}
-                                            onChange={e => setFormData({...formData, phone: e.target.value})}
-                                            placeholder="+27..." 
-                                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-gold-500 outline-none transition-colors"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs text-gold-400 font-bold uppercase tracking-widest mb-2">Email</label>
-                                        <input 
-                                            type="email" 
-                                            value={formData.email}
-                                            onChange={e => setFormData({...formData, email: e.target.value})}
-                                            placeholder="info@..." 
-                                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-gold-500 outline-none transition-colors"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="flex justify-between pt-4">
-                                    <button onClick={() => setStep(1)} className="text-gray-400 hover:text-white font-bold uppercase text-xs">Back</button>
-                                    <PrimaryButton onClick={() => setStep(3)}>Next Step <ChevronRight size={16}/></PrimaryButton>
-                                </div>
-                            </div>
-                        )}
-
-                        {step === 3 && (
-                            <div className="space-y-6 animate-fade-in overflow-y-auto max-h-[500px] pr-2 custom-scrollbar">
-                                <h3 className="text-2xl font-serif text-white mb-4">Select Membership</h3>
-                                <div className="grid grid-cols-1 gap-4">
-                                    {Object.values(ListingTier).map((tier) => {
-                                        const tierData = PRICING_STRUCTURE[tier];
-                                        const isSelected = formData.membership === tier;
-                                        return (
-                                            <div 
-                                                key={tier}
-                                                onClick={() => setFormData({...formData, membership: tier})}
-                                                className={`p-6 rounded-xl border-2 cursor-pointer transition-all relative overflow-hidden ${isSelected ? 'border-gold-500 bg-gold-500/10' : 'border-white/10 bg-transparent hover:border-gold-500/30'}`}
-                                            >
-                                                {isSelected && <div className="absolute top-0 right-0 bg-gold-500 text-black text-[10px] font-bold px-2 py-1">SELECTED</div>}
-                                                <div className="flex justify-between items-start mb-4">
-                                                    <div className="flex items-center gap-2">
-                                                        <h4 className={`text-xl font-bold ${tier === ListingTier.Platinum ? 'text-purple-400' : tier === ListingTier.Elite ? 'text-gold-400' : 'text-white'} flex items-center gap-2`}>
-                                                            {tier === ListingTier.Elite && <Crown size={18}/>}
-                                                            {tier === ListingTier.Platinum && <Award size={18}/>}
-                                                            {tier}
-                                                        </h4>
-                                                    </div>
-                                                    {isSelected && <CheckCircle size={20} className="text-gold-500" />}
-                                                </div>
-                                                <div className="mb-4">
-                                                  <div className="text-[10px] text-gold-500 font-bold uppercase tracking-widest mb-1">Visibility: {tierData.visibility}</div>
-                                                  <div className="text-[10px] text-gray-500 italic">{tierData.note}</div>
-                                                </div>
-                                                <ul className="space-y-1.5 text-xs text-gray-300 mb-6">
-                                                    {tierData.features.map((f, i) => (
-                                                      <li key={i} className="flex items-center gap-2"><Check size={12} className="text-gold-500 flex-shrink-0" /> {f}</li>
-                                                    ))}
-                                                </ul>
-                                                <div className="flex items-baseline gap-2">
-                                                  <div className="text-2xl font-bold text-white">R{tierData.price}</div>
-                                                  <div className="text-xs font-normal text-gray-500">/ {tierData.duration}</div>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                                <div className="flex justify-between pt-6">
-                                    <button onClick={() => setStep(2)} className="text-gray-400 hover:text-white font-bold uppercase text-xs">Back</button>
-                                    <button 
-                                        onClick={handleSubmit}
-                                        disabled={loading}
-                                        className="bg-green-500 hover:bg-green-400 text-black px-8 py-3 rounded-lg font-bold uppercase tracking-wider text-sm shadow-[0_0_20_rgba(34,197,94,0.3)] transition-all flex items-center gap-2"
-                                    >
-                                        {loading ? 'Submitting...' : (formData.membership === ListingTier.Platinum ? 'Request Review' : 'Complete Listing')} {loading && <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>}
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-
-                        {step === 4 && (
-                            <div className="h-full flex flex-col items-center justify-center text-center animate-fade-in py-10">
-                                <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-6 border border-green-500/20">
-                                    <CheckCircle size={40} className="text-green-500" />
-                                </div>
-                                <h3 className="text-3xl font-serif text-white mb-4">Application Received!</h3>
-                                <p className="text-gray-400 max-w-md mb-8">
-                                    Your listing for <span className="text-white font-bold">{formData.name}</span> has been submitted as <span className="text-gold-400">{formData.membership}</span>. 
-                                    {formData.membership === ListingTier.Trial ? ' It will convert to Premium automatically after 7 days.' : ' Our team will verify your details within 24–72 hours.'}
-                                </p>
-                                <PrimaryButton onClick={() => navigate('home')}>Back to Home</PrimaryButton>
-                            </div>
-                        )}
-                    </div>
+                    {/* APPLICATION SECTION - TEXT ONLY */}
+                    <section className="max-w-4xl mx-auto px-6 md:px-8 py-20 text-center">
+                        <h2 className="text-4xl font-serif text-white mb-6">Ready to List Your Business?</h2>
+                        <p className="text-gray-400 text-lg leading-relaxed">
+                            Apply to become a verified LowveldHub partner and position your business at the forefront of Mpumalanga's digital future.
+                        </p>
+                        <p className="text-gray-400 text-sm mt-6 mb-2">Email us:</p>
+                        <a href="mailto:info@lowveldhub.co.za" className="text-gold-400 text-lg font-semibold hover:text-gold-300 transition-colors">
+                            info@lowveldhub.co.za
+                        </a>
+                    </section>
                 </div>
             )}
         </div>
@@ -638,15 +592,9 @@ const CarsView = ({ navigate, favorites, toggleFavorite, onChat, activeArea, set
                     </div>
 
                     {mobileFiltersOpen && (
-                        <div className="fixed inset-0 z-50 lg:hidden bg-black/60 backdrop-blur-sm p-4 flex items-end">
-                            <div className="w-full max-w-md mx-auto bg-black rounded-t-2xl border border-white/10">
-                                <div className="p-4 border-b border-white/10 flex justify-between items-center">
-                                    <h3 className="text-white font-bold">Filters</h3>
-                                    <button onClick={() => setMobileFiltersOpen(false)} className="text-gray-400 hover:text-white">✕</button>
-                                </div>
-                                <div className="max-h-[70vh] overflow-y-auto p-4">
-                                    <CarFilters cars={carListings} filters={filters} setFilters={setFilters} onApply={() => setMobileFiltersOpen(false)} />
-                                </div>
+                        <div className="fixed inset-0 z-50 lg:hidden bg-black/60 p-4">
+                            <div className="max-w-md mx-auto">
+                                <CarFilters cars={carListings} filters={filters} setFilters={setFilters} onApply={() => setMobileFiltersOpen(false)} />
                             </div>
                         </div>
                     )}
@@ -941,148 +889,214 @@ const CreatorBusinessView = ({ navigate }: any) => (
 );
 
 const AboutUsView = () => (
-    <div className="pt-28 pb-20 container mx-auto px-4 text-center">
-        <SectionTitle title="About LowveldHub" subtitle="Our Mission" />
-        <div className="max-w-3xl mx-auto text-gray-300 space-y-6">
-            <p>LowveldHub is the definitive digital ecosystem for Mpumalanga, bridging the gap between sophisticated customers and the region's top-tier vendors.</p>
-            <p>Our platform empowers local communities by showcasing the unique stories and services that make the Lowveld exceptional.</p>
-        </div>
-    </div>
-);
-
-const AffiliateView = ({ isAuthenticated, setIsAuthOpen }: any) => {
-  const [showCodeModal, setShowCodeModal] = React.useState(false);
-
-  const handleGetCode = () => {
-    if (!isAuthenticated) {
-      setIsAuthOpen(true);
-      return;
-    }
-    setShowCodeModal(true);
-  };
-
-  return (
-    <>
-      <div className="pt-24 pb-20 container mx-auto px-4 min-h-screen">
-        <div className="max-w-2xl mx-auto">
-          <SectionTitle title="Affiliate Program" subtitle="Earn R200 Per Business Referred" />
-          
-          <div className="bg-gradient-to-r from-gold-500/10 to-gold-400/5 border border-gold-500/30 rounded-3xl p-12 mb-8">
-            <h2 className="text-3xl font-serif text-white mb-6">How It Works</h2>
-            
-            <div className="space-y-6 mb-8">
-              <div className="flex gap-4">
-                <div className="text-4xl">🔗</div>
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Share Your Code</h3>
-                  <p className="text-gray-400">Get your unique referral code and share it with businesses in Mpumalanga.</p>
+    <div className="min-h-screen bg-black">
+        {/* HERO SECTION */}
+        <div className="pt-32 pb-20 container mx-auto px-4 relative">
+            <div className="max-w-5xl mx-auto text-center space-y-8">
+                <div className="inline-block">
+                    <p className="text-xs uppercase tracking-[0.2em] text-gold-400 font-semibold">Our Story</p>
                 </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <div className="text-4xl">✅</div>
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">They Successfully Join & Get Approved</h3>
-                  <p className="text-gray-400">When a business signs up using your code AND their listing is approved, you earn.</p>
-                  <p className="text-xs text-gold-400 mt-2">⭐ Approval usually takes 24-48 hours</p>
-                </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <div className="text-4xl">💰</div>
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">You Earn R200 (Payment Confirmed)</h3>
-                  <p className="text-gray-400">Once their listing is live, R200 is added to your account instantly.</p>
-                </div>
-              </div>
+                <h1 className="text-6xl md:text-7xl font-serif text-white leading-tight">
+                    Mpumalanga Elevated
+                </h1>
+                <p className="text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+                    LowveldHub is more than a directory. It's a movement to position Mpumalanga as Africa's premier destination for discerning travelers and businesses.
+                </p>
             </div>
-
-            <div className="bg-black/40 border border-white/10 rounded-xl p-6 mb-8">
-              <p className="text-gray-300 mb-3 leading-relaxed">
-                Help local Mpumalanga businesses get discovered by our premium audience. Earn real money by connecting quality businesses with opportunities. 
-              </p>
-              <p className="text-gray-400 text-sm mb-3">
-                <strong>Payment:</strong> R200 per successfully listed business (approved status only)
-              </p>
-              <p className="text-xs text-gray-500 border-t border-white/10 pt-3">
-                💡 Tip: Refer quality businesses with complete info for faster approvals
-              </p>
-            </div>
-
-            <button onClick={handleGetCode} className="w-full bg-gradient-to-r from-gold-500 to-gold-400 text-black px-8 py-4 rounded-xl font-bold text-lg hover:shadow-[0_12px_40px_rgba(217,119,6,0.3)] transition-all duration-300">
-              Get Your Affiliate Code Now
-            </button>
-          </div>
         </div>
-      </div>
 
-      {/* Affiliate Code Modal */}
-      {showCodeModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setShowCodeModal(false)} />
-          <div className="relative bg-black border border-gold-500/30 rounded-2xl p-8 max-w-md w-full">
-            <button onClick={() => setShowCodeModal(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">✕</button>
-            
-            <h3 className="text-2xl font-serif text-white mb-2">Your Affiliate Code</h3>
-            <p className="text-gray-400 text-sm mb-6">Earn R200 when a business successfully lists using your code</p>
-            
-            <div className="bg-gradient-to-r from-gold-500/20 to-gold-400/10 border border-gold-500/30 rounded-xl p-6 mb-6 text-center">
-              <div className="text-sm text-gold-400 mb-2">Your Code</div>
-              <div className="text-4xl font-serif text-white font-bold">{affiliateData.code}</div>
-              <p className="text-xs text-gray-400 mt-3">✓ Payment upon listing approval</p>
-            </div>
-
-            <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 mb-6">
-              <p className="text-xs text-blue-300"><strong>How to earn:</strong></p>
-              <ol className="text-xs text-gray-300 mt-2 space-y-1 ml-4 list-decimal">
-                <li>Share your code with businesses</li>
-                <li>They sign up & add their listing</li>
-                <li>Listing gets approved (24-48hrs)</li>
-                <li>R200 added to your account ✓</li>
-              </ol>
-            </div>
-
-            <div className="space-y-3 mb-6">
-              <button onClick={() => {
-                navigator.clipboard.writeText(affiliateData.code);
-                alert('Code copied!');
-              }} className="w-full bg-gold-500 text-black px-4 py-3 rounded-lg font-bold hover:bg-gold-400 transition">
-                Copy Code
-              </button>
-              <button onClick={() => {
-                const text = `📢 Make money with LowveldHub! I'm earning R200 for every business I refer that successfully joins. Use my code: ${affiliateData.code} when you list your business. Zero fees. Fast approval! 🚀`;
-                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-              }} className="w-full bg-white/10 text-white px-4 py-3 rounded-lg font-bold hover:bg-white/20 transition border border-white/20">
-                Share on WhatsApp
-              </button>
-              <button onClick={() => {
-                window.open(`https://twitter.com/intent/tweet?text=Making money with @LowveldHub! Earn R200 per business that lists using my code: ${affiliateData.code}. Join me! 🚀`, '_blank');
-              }} className="w-full bg-white/10 text-white px-4 py-3 rounded-lg font-bold hover:bg-white/20 transition border border-white/20">
-                Share on Twitter
-              </button>
-            </div>
-
-            <p className="text-xs text-gray-500 text-center border-t border-white/10 pt-3">Payment only when business is successfully listed & approved</p>
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
-
-const MicroTasksView = () => (
-    <div className="pt-28 pb-20 container mx-auto px-4">
-        <SectionTitle title="Micro Tasks" subtitle="Earn Points for Activity" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {microTasks.map(task => (
-                <div key={task.id} className="bg-white/5 border border-white/10 p-6 rounded-xl flex justify-between items-center">
-                    <div>
-                        <h4 className="text-white font-bold">{task.title}</h4>
-                        <p className="text-gray-500 text-xs">{task.category}</p>
+        {/* VISION STATEMENT */}
+        <div className="py-20 border-y border-white/10 bg-white/2">
+            <div className="container mx-auto px-4">
+                <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div className="text-center space-y-4">
+                        <div className="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center mx-auto">
+                            <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl font-serif text-white">Our Mission</h3>
+                        <p className="text-gray-400 leading-relaxed">To curate Mpumalanga's most exceptional businesses and create a seamless connection between quality-seeking customers and verified excellence.</p>
                     </div>
-                    <div className="text-gold-500 font-bold">{task.payout}</div>
+                    <div className="text-center space-y-4">
+                        <div className="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center mx-auto">
+                            <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl font-serif text-white">Our Vision</h3>
+                        <p className="text-gray-400 leading-relaxed">To establish LowveldHub as the trusted standard for premium experiences in Mpumalanga — where every business is verified and every customer is valued.</p>
+                    </div>
+                    <div className="text-center space-y-4">
+                        <div className="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center mx-auto">
+                            <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl font-serif text-white">Our Promise</h3>
+                        <p className="text-gray-400 leading-relaxed">We maintain rigorous standards. Quality over volume. Curation over chaos. Excellence is our non-negotiable commitment.</p>
+                    </div>
                 </div>
-            ))}
+            </div>
+        </div>
+
+        {/* THE DIFFERENCE */}
+        <div className="py-24 container mx-auto px-4">
+            <div className="max-w-5xl mx-auto space-y-16">
+                <div className="text-center space-y-4 mb-16">
+                    <h2 className="text-5xl font-serif text-white">What Makes LowveldHub Different</h2>
+                    <p className="text-xl text-gray-400">We don't list every business. We invite the best ones.</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    {[
+                        {
+                            title: 'Curated, Not Crowded',
+                            desc: 'Every listing is reviewed and approved. No spam, no mediocrity — only verified excellence.'
+                        },
+                        {
+                            title: 'AI-Powered Intelligence',
+                            desc: 'Our Gemini-powered concierge learns preferences and delivers truly personalized recommendations.'
+                        },
+                        {
+                            title: 'Verified Excellence',
+                            desc: 'We assess quality, branding, and credibility. Your customers trust that every recommendation is legitimate.'
+                        },
+                        {
+                            title: 'Premium Audience',
+                            desc: 'Access discerning travelers and locals seeking authentic, high-end Mpumalanga experiences.'
+                        },
+                        {
+                            title: 'No Commission Trap',
+                            desc: 'Pay once, list forever. No percentage of your sales goes to intermediaries. Direct customer connections.'
+                        },
+                        {
+                            title: 'Community-First',
+                            desc: 'We celebrate Mpumalanga businesses. Every listing tells a story worth experiencing.'
+                        }
+                    ].map((item, i) => (
+                        <div key={i} className="bg-white/3 border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300">
+                            <div className="flex items-start gap-4">
+                                <div className="text-gold-400 text-3xl font-serif">✓</div>
+                                <div>
+                                    <h4 className="text-xl font-serif text-white mb-2">{item.title}</h4>
+                                    <p className="text-gray-400 leading-relaxed">{item.desc}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+
+        {/* OUR ECOSYSTEM */}
+        <div className="py-20 border-y border-white/10 bg-white/2">
+            <div className="container mx-auto px-4">
+                <div className="max-w-5xl mx-auto">
+                    <h2 className="text-5xl font-serif text-white mb-12 text-center">Our Ecosystem</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <h3 className="text-2xl font-serif text-gold-400">For Businesses</h3>
+                            <ul className="space-y-3">
+                                {[
+                                    'Be discovered by premium customers',
+                                    'Skip the middleman (no commission)',
+                                    'Join a community of verified excellence',
+                                    'Leverage AI recommendations',
+                                    'Grow without selling out'
+                                ].map((item, i) => (
+                                    <li key={i} className="flex items-center gap-3 text-gray-300">
+                                        <span className="text-gold-400 font-bold">→</span>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="space-y-4">
+                            <h3 className="text-2xl font-serif text-gold-400">For Customers</h3>
+                            <ul className="space-y-3">
+                                {[
+                                    'Discover verified, authentic experiences',
+                                    'Get personalized AI-powered recommendations',
+                                    'Support local businesses directly',
+                                    'Access exclusive opportunities',
+                                    'Experience Mpumalanga at its best'
+                                ].map((item, i) => (
+                                    <li key={i} className="flex items-center gap-3 text-gray-300">
+                                        <span className="text-gold-400 font-bold">→</span>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* THE NUMBERS */}
+        <div className="py-24 container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+                <h2 className="text-5xl font-serif text-white mb-16 text-center">Growing Impact</h2>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    {[
+                        { num: '65+', label: 'Areas in Mpumalanga' },
+                        { num: '28', label: 'Business Categories' },
+                        { num: '1000+', label: 'Premium Listings' },
+                        { num: '∞', label: 'Possibilities' }
+                    ].map((stat, i) => (
+                        <div key={i} className="text-center p-6 bg-white/3 border border-white/10 rounded-xl hover:border-gold-500/30 transition-all">
+                            <div className="text-4xl font-serif text-gold-400 font-bold mb-2">{stat.num}</div>
+                            <p className="text-gray-400 font-light">{stat.label}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+
+        {/* PHILOSOPHY */}
+        <div className="py-20 bg-gradient-to-r from-gold-500/10 via-transparent to-gold-500/10 border-y border-gold-500/20">
+            <div className="container mx-auto px-4">
+                <div className="max-w-4xl mx-auto text-center space-y-8">
+                    <h2 className="text-4xl font-serif text-white">Our Philosophy</h2>
+                    <div className="bg-white/3 border border-white/10 rounded-2xl p-12 space-y-6">
+                        <p className="text-xl text-gray-300 leading-relaxed font-light">
+                            In a world drowning in noise, <span className="text-gold-400 font-semibold">clarity wins</span>.
+                        </p>
+                        <p className="text-lg text-gray-400 leading-relaxed">
+                            We believe that the best customer experiences come from trusted recommendations, not algorithmic chasing. That businesses deserve freedom, not extraction. That Mpumalanga's unique culture deserves a platform that honors its authenticity.
+                        </p>
+                        <p className="text-lg text-gray-400 leading-relaxed">
+                            LowveldHub is built on simple principles: <span className="text-white font-semibold">Quality matters. Trust is earned. Excellence is non-negotiable.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* CALL TO ACTION */}
+        <div className="py-24 container mx-auto px-4 text-center">
+            <div className="max-w-3xl mx-auto space-y-8">
+                <h2 className="text-5xl font-serif text-white">Join the Movement</h2>
+                <p className="text-xl text-gray-400">Whether you're a business seeking premium exposure or a customer discovering authentic experiences, LowveldHub is your platform.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                    <a href="#list-your-business" className="bg-gold-500 hover:bg-gold-600 text-black px-8 py-3 rounded-full font-bold text-lg transition-colors inline-block">
+                        List Your Business
+                    </a>
+                    <a href="#directory" className="border border-gold-500/40 hover:border-gold-500 text-white px-8 py-3 rounded-full font-bold text-lg transition-colors inline-block">
+                        Explore Directory
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {/* FOOTER PHILOSOPHY */}
+        <div className="py-12 border-t border-white/10 text-center">
+            <div className="max-w-2xl mx-auto">
+                <p className="text-gray-500 text-sm leading-relaxed">
+                    LowveldHub is more than a business directory. It's a commitment to excellence, a celebration of Mpumalanga's finest, and an invitation to experience authenticity in a world of mediocrity.
+                </p>
+            </div>
         </div>
     </div>
 );
@@ -1124,83 +1138,157 @@ const RewardsView = () => (
 );
 
 const ContactUsView = () => (
-    <div className="pt-24 pb-20 container mx-auto px-4 min-h-screen">
-        <div className="max-w-3xl mx-auto">
-            <SectionTitle title="Contact Us" subtitle="Get In Touch With LowveldHub" />
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                {/* Contact Info */}
-                <div className="space-y-6">
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                        <div className="flex gap-4 mb-6">
-                            <div className="text-3xl">📧</div>
-                            <div>
-                                <h3 className="text-xl font-serif text-white mb-2">Email</h3>
-                                <p className="text-gray-400"><a href="mailto:info@lowveld.co.za" className="text-gold-400 hover:text-gold-300 transition">info@lowveld.co.za</a></p>
-                                <p className="text-xs text-gray-500 mt-2">We reply within 24 hours</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                        <div className="flex gap-4 mb-6">
-                            <div className="text-3xl">📱</div>
-                            <div>
-                                <h3 className="text-xl font-serif text-white mb-2">Phone</h3>
-                                <p className="text-gray-400"><a href="tel:+27664555888" className="text-gold-400 hover:text-gold-300 transition">+27 66 455 5888</a></p>
-                                <p className="text-xs text-gray-500 mt-2">Mon–Fri, 9 AM – 5 PM SAST</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                        <div className="flex gap-4 mb-6">
-                            <div className="text-3xl">📍</div>
-                            <div>
-                                <h3 className="text-xl font-serif text-white mb-2">Office</h3>
-                                <p className="text-gray-400">Nelspruit, Mpumalanga<br/>South Africa</p>
-                                <p className="text-xs text-gray-500 mt-2">Serving Mpumalanga</p>
-                            </div>
-                        </div>
-                    </div>
+    <div className="min-h-screen bg-black">
+        {/* HERO SECTION */}
+        <div className="pt-32 pb-20 container mx-auto px-4 relative">
+            <div className="max-w-4xl mx-auto text-center space-y-8">
+                <div className="inline-block">
+                    <p className="text-xs uppercase tracking-[0.2em] text-gold-400 font-semibold">Get in Touch</p>
                 </div>
+                <h1 className="text-6xl md:text-7xl font-serif text-white leading-tight">
+                    Let's Connect
+                </h1>
+                <p className="text-2xl text-gray-300 font-light leading-relaxed">
+                    Whether you have questions, feedback, or are ready to partner with us, we'd love to hear from you. Our team responds thoughtfully and personally.
+                </p>
+            </div>
+        </div>
 
-                {/* Contact Form */}
-                <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-8">
-                    <h3 className="text-xl font-serif text-white mb-6">Send us a Message</h3>
-                    <div className="space-y-4">
-                        <input type="text" placeholder="Your Name" className="w-full bg-black/40 border border-white/10 px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500/50" />
-                        <input type="email" placeholder="Your Email" className="w-full bg-black/40 border border-white/10 px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500/50" />
-                        <input type="text" placeholder="Subject" className="w-full bg-black/40 border border-white/10 px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500/50" />
-                        <textarea placeholder="Your Message" rows={5} className="w-full bg-black/40 border border-white/10 px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500/50 resize-none"></textarea>
-                        <button className="w-full bg-gradient-to-r from-gold-500 to-gold-400 text-black px-6 py-3 rounded-lg font-bold hover:shadow-[0_8px_24px_rgba(217,119,6,0.3)] transition-all duration-300">
-                            Send Message
-                        </button>
+        {/* CONTACT OPTIONS - 3 COLUMN LAYOUT */}
+        <div className="py-24 container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {/* EMAIL */}
+                    <div className="bg-gradient-to-br from-white/5 to-white/2 border border-white/10 rounded-2xl p-12 hover:border-gold-500/30 transition-all duration-300 group">
+                        <div className="space-y-6">
+                            <div className="w-16 h-16 rounded-2xl bg-gold-500/10 group-hover:bg-gold-500/20 transition-colors flex items-center justify-center">
+                                <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-2xl font-serif text-white mb-2">Email</h3>
+                                <p className="text-gray-400 text-sm mb-4">Best for detailed inquiries and partnership proposals</p>
+                                <a 
+                                    href="mailto:info@lowveldhub.co.za" 
+                                    className="text-gold-400 hover:text-gold-300 transition-colors font-semibold text-lg"
+                                >
+                                    info@lowveldhub.co.za
+                                </a>
+                                <p className="text-xs text-gray-500 mt-4">
+                                    Response time: 24–48 hours
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* PHONE */}
+                    <div className="bg-gradient-to-br from-white/5 to-white/2 border border-white/10 rounded-2xl p-12 hover:border-gold-500/30 transition-all duration-300 group">
+                        <div className="space-y-6">
+                            <div className="w-16 h-16 rounded-2xl bg-gold-500/10 group-hover:bg-gold-500/20 transition-colors flex items-center justify-center">
+                                <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-2xl font-serif text-white mb-2">Phone</h3>
+                                <p className="text-gray-400 text-sm mb-4">For urgent matters and direct conversations</p>
+                                <a 
+                                    href="tel:+27664555888" 
+                                    className="text-gold-400 hover:text-gold-300 transition-colors font-semibold text-lg"
+                                >
+                                    +27 66 455 5888
+                                </a>
+                                <p className="text-xs text-gray-500 mt-4">
+                                    Monday–Friday, 9 AM – 5 PM SAST
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* LOCATION */}
+                    <div className="bg-gradient-to-br from-white/5 to-white/2 border border-white/10 rounded-2xl p-12 hover:border-gold-500/30 transition-all duration-300 group">
+                        <div className="space-y-6">
+                            <div className="w-16 h-16 rounded-2xl bg-gold-500/10 group-hover:bg-gold-500/20 transition-colors flex items-center justify-center">
+                                <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-2xl font-serif text-white mb-2">Office</h3>
+                                <p className="text-gray-400 text-sm mb-4">Located in the heart of Mpumalanga</p>
+                                <p className="text-gold-400 font-semibold">
+                                    Nelspruit, Mpumalanga<br />South Africa
+                                </p>
+                                <p className="text-xs text-gray-500 mt-4">
+                                    Serving all of Mpumalanga
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            {/* FAQ Section */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                <h3 className="text-2xl font-serif text-white mb-6">Common Questions</h3>
-                <div className="space-y-4">
-                    <div>
-                        <h4 className="text-white font-semibold mb-2">❓ How long does it take to list a business?</h4>
-                        <p className="text-gray-400 text-sm">Listings are typically approved within 24-48 hours after submission.</p>
-                    </div>
-                    <div className="border-t border-white/10 pt-4">
-                        <h4 className="text-white font-semibold mb-2">❓ What's the cost to list?</h4>
-                        <p className="text-gray-400 text-sm">Listings start free with optional Premium and Elite upgrades for additional visibility.</p>
-                    </div>
-                    <div className="border-t border-white/10 pt-4">
-                        <h4 className="text-white font-semibold mb-2">❓ How do affiliates get paid?</h4>
-                        <p className="text-gray-400 text-sm">Affiliates earn R200 per successfully listed business. Payment happens once the listing is approved.</p>
-                    </div>
-                    <div className="border-t border-white/10 pt-4">
-                        <h4 className="text-white font-semibold mb-2">❓ Can I edit my listing after posting?</h4>
-                        <p className="text-gray-400 text-sm">Yes! You can update your business information anytime from your dashboard.</p>
-                    </div>
+        {/* FAQ SECTION - LUXURY DESIGN */}
+        <div className="py-24 container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-16">
+                    <p className="text-xs uppercase tracking-[0.2em] text-gold-400 font-semibold mb-4">Questions?</p>
+                    <h2 className="text-5xl font-serif text-white">Frequently Asked</h2>
                 </div>
+
+                <div className="space-y-6">
+                    {[
+                        {
+                            q: "How long does it take for my business to be listed?",
+                            a: "Our review process typically takes 24–72 hours. We assess quality, branding, and fit with our community. Premium businesses are often approved faster."
+                        },
+                        {
+                            q: "What's included in each listing package?",
+                            a: "Essential (R799): Business name, location, contact, images, and description. Professional (R1299): Priority placement, ELITE badge, top category ranking. Platinum (R1999): All Elite features plus homepage spotlight, newsletter feature, and AI spotlight."
+                        },
+                        {
+                            q: "Can I update my listing after it goes live?",
+                            a: "Absolutely! You can update your business information, images, description, and contact details anytime from your account dashboard. Changes appear immediately."
+                        },
+                        {
+                            q: "Is there a commission on customer transactions?",
+                            a: "No. We charge a one-time listing fee. We don't take a cut of your sales. Direct customer connections = your full revenue."
+                        },
+                        {
+                            q: "What if my business doesn't get approved?",
+                            a: "We provide feedback on why. Most rejections are due to incomplete information or poor image quality. You can reapply after making improvements."
+                        }
+                    ].map((item, i) => (
+                        <div key={i} className="bg-white/3 border border-white/10 hover:border-gold-500/30 rounded-xl p-8 transition-all duration-300 group">
+                            <div className="flex items-start gap-4">
+                                <span className="text-gold-400 text-2xl font-serif font-bold min-w-8">Q</span>
+                                <div className="flex-1">
+                                    <h4 className="text-lg font-serif text-white mb-3 group-hover:text-gold-300 transition-colors">{item.q}</h4>
+                                    <p className="text-gray-400 leading-relaxed">{item.a}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+
+        {/* CLOSING CTA */}
+        <div className="py-24 text-center border-t border-white/10">
+            <div className="container mx-auto px-4 max-w-2xl">
+                <h2 className="text-4xl font-serif text-white mb-6">Still Have Questions?</h2>
+                <p className="text-gray-400 mb-8 text-lg">
+                    Our team is here to help. Reach out and let's start a conversation about how LowveldHub can elevate your business.
+                </p>
+                <a 
+                    href="mailto:info@lowveldhub.co.za" 
+                    className="inline-block bg-gold-500 hover:bg-gold-600 text-black px-10 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-gold-500/30"
+                >
+                    Get in Touch
+                </a>
             </div>
         </div>
     </div>
@@ -1238,18 +1326,27 @@ const Footer = ({ navigate, onLogin }: any) => (
                     <h4 className="text-white font-bold text-[11px] uppercase tracking-[0.15em] mb-8 text-gold-400">Platform</h4>
                     <ul className="space-y-3 text-sm text-gray-500">
                         <li><button onClick={() => navigate('list-your-business')} className="hover:text-gold-400 transition-colors duration-300">Add Listing</button></li>
-                        <li><button onClick={() => navigate('affiliate')} className="hover:text-gold-400 transition-colors duration-300">Affiliate</button></li>
                         <li><button onClick={() => navigate('contact-us')} className="hover:text-gold-400 transition-colors duration-300">Contact Us</button></li>
-                        <li><button onClick={() => navigate('micro-tasks')} className="hover:text-gold-400 transition-colors duration-300">Earn Points</button></li>
                         <li><button onClick={() => navigate('about')} className="hover:text-gold-400 transition-colors duration-300">About Us</button></li>
                     </ul>
                 </div>
                 <div>
                     <h4 className="text-white font-bold text-[11px] uppercase tracking-[0.15em] mb-8 text-gold-400">Social</h4>
                     <div className="flex gap-4">
-                        <Facebook size={20} className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300" />
-                        <Instagram size={20} className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300" />
-                        <Twitter size={20} className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300" />
+                        <a href="https://www.facebook.com/lowveldhub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300">
+                            <Facebook size={20} />
+                        </a>
+                        <a href="https://www.instagram.com/lowveldhub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300">
+                            <Instagram size={20} />
+                        </a>
+                        <a href="https://www.twitter.com/lowveldhub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300">
+                            <Twitter size={20} />
+                        </a>
+                        <a href="https://www.tiktok.com/@lowveldhub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300">
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" style={{ transform: 'scale(1.3)', transformOrigin: 'center' }}>
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.82 2.89 2.89 0 0 1 5.1-1.82v-3.28a6.47 6.47 0 0 0-5.79 3.31 6.47 6.47 0 0 0 5.79 3.31v-3.45a4.83 4.83 0 0 0 3.77-4.25V6.69Z" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1425,6 +1522,19 @@ const DirectoryView = ({ navigate, favorites, toggleFavorite, businesses, initia
             <div className="fixed top-24 right-6 z-50 bg-white/5 border border-white/10 text-xs text-gray-200 p-3 rounded-lg backdrop-blur-md">Directory debug: <br />activeCategory: {String(activeCategory)}<br />categories: {categories.length} • businesses: {businesses.length}</div>
             <SectionTitle title="Directory" subtitle="Find Premium Businesses • Trusted in Mpumalanga" />
 
+            {/* Back Button for Category Selection */}
+            {(activeCategory !== 'All' || activeSub !== 'All') && (
+                <div className="mb-8">
+                    <button 
+                        onClick={() => { setActiveCategory('All'); setActiveSub('All'); }}
+                        className="flex items-center gap-2 text-gold-400 hover:text-gold-300 transition-colors duration-300 font-semibold text-sm uppercase tracking-wider"
+                    >
+                        <ArrowLeft size={18} />
+                        Back to All Categories
+                    </button>
+                </div>
+            )}
+
             {/* Landing: AI Search + Category Grid only */}
             {activeCategory === 'All' && activeSub === 'All' && (
                 <div className="bg-[#0c0c0c] border border-white/5 rounded-3xl p-6 mb-12 shadow-2xl animate-fade-in relative z-40">
@@ -1572,6 +1682,7 @@ const QuickAccessSection = ({ navigate }: { navigate: (view: string) => void }) 
                     { icon: TransportIcon, label: "Transport", view: "transport" },
                     { icon: ShoppingIcon, label: "Shop", view: "marketplace" },
                     { icon: TourismIcon, label: "Tourism", view: "tourism" },
+                    { icon: Grid, label: "Directory", view: "directory" },
                 ].map((item, idx) => (
                     <button
                         key={idx}
@@ -2819,8 +2930,6 @@ const HomeView = ({ navigate, favorites, toggleFavorite, businesses, activeArea,
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [currentUser, setCurrentUser] = useState<any>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeSub, setActiveSub] = useState<string | null>(null);
   const [activeArea, setActiveArea] = useState('All Areas');
@@ -3090,58 +3199,7 @@ function App() {
         setPanelSuccess(false);
     }, [isPanelOpen]);
 
-  const handleLogin = (email: string, name: string) => {
-    const user = {
-      id: `user_${Date.now()}`,
-      name: name,
-      email: email,
-      role: 'User',
-      status: 'Active',
-      tier: 'Essential',
-      rewardPoints: 2450,
-      savedItems: [],
-      joinedDate: new Date().toISOString()
-    };
-    setCurrentUser(user);
-    setIsAuthenticated(true);
-    try {
-      localStorage.setItem('lh_user', JSON.stringify(user));
-    } catch {}
-    setCurrentView('dashboard');
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setCurrentUser(null);
-    try {
-      localStorage.removeItem('lh_user');
-    } catch {}
-    setCurrentView('home');
-  };
-
-  const handleRegister = () => {
-    setCurrentView('login');
-  };
-
-  // Check if user is logged in on mount
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('lh_user');
-      if (saved) {
-        const user = JSON.parse(saved);
-        setCurrentUser(user);
-        setIsAuthenticated(true);
-      }
-    } catch {}
-  }, []);
-
   const handleNavigate = (view: string, category?: string, id?: string, sub?: string) => {
-    // Require login for protected routes
-    const protectedRoutes = ['dashboard'];
-    if (protectedRoutes.includes(view) && !isAuthenticated) {
-      setCurrentView('login');
-      return;
-    }
     setCurrentView(view);
     if (category) setActiveCategory(category);
     if (sub) setActiveSub(sub);
@@ -3529,8 +3587,6 @@ function App() {
         };
 
         switch (currentView) {
-      case 'login': return <LoginPage onLogin={handleLogin} onRegister={handleRegister} />;
-      case 'dashboard': return isAuthenticated && currentUser ? <Dashboard user={currentUser} onLogout={handleLogout} navigate={handleNavigate} /> : <LoginPage onLogin={handleLogin} onRegister={handleRegister} />;
       case 'home': return <HomeView navigate={handleNavigate} favorites={favorites} toggleFavorite={toggleFavorite} businesses={localBusinesses} activeArea={activeArea} setActiveArea={setActiveArea} />;
       case 'directory': return <DirectoryView navigate={handleNavigate} favorites={favorites} toggleFavorite={toggleFavorite} businesses={localBusinesses} activeArea={activeArea} setActiveArea={setActiveArea} initialCategory={activeCategory} initialSubcategory={activeSub} />;
       case 'list-your-business': return <PremiumAddBusinessView navigate={handleNavigate} onAddBusiness={handleAddBusiness} handleOpenAuth={handleOpenAuth} />;
@@ -3584,9 +3640,7 @@ function App() {
     case 'story-detail': return <StoryDetailClean storyId={selectedBusinessId} navigate={handleNavigate} />;
       case 'creator-business': return <CreatorBusinessView navigate={handleNavigate} />;
       case 'about': return <AboutUsView />;
-      case 'affiliate': return <AffiliateView isAuthenticated={isAuthenticated} setIsAuthOpen={setIsAuthOpen} />;
       case 'contact-us': return <ContactUsView />;
-      case 'micro-tasks': return <MicroTasksView />;
       case 'seller-earnings': return <SellerEarningsView />;
       case 'rewards': return <RewardsView />;
       default: return <HomeView navigate={handleNavigate} favorites={favorites} toggleFavorite={toggleFavorite} businesses={localBusinesses} activeArea={activeArea} setActiveArea={setActiveArea} />;
@@ -3622,18 +3676,6 @@ function App() {
 
                         {/* Right Actions */}
                         <div className="flex items-center gap-4">
-                                {/* Auth Buttons */}
-                                {isAuthenticated ? (
-                                  <>
-                                    <button onClick={() => handleNavigate('dashboard')} className="hidden md:block text-xs uppercase text-white hover:text-gold-400 transition-colors">Account</button>
-                                    <button onClick={handleLogout} className="hidden md:block text-xs uppercase text-red-400">Logout</button>
-                                  </>
-                                ) : (
-                                  <>
-                                    <button onClick={() => handleNavigate('login')} className="hidden md:block text-xs uppercase text-white hover:text-gold-400 transition-colors">Login</button>
-                                  </>
-                                )}
-
                                 {/* Add Business CTA */}
                                 <button 
                                   onClick={() => handleNavigate('list-your-business')} 
@@ -3660,14 +3702,6 @@ function App() {
                 <button key={item.id} onClick={() => { handleNavigate(item.id); setIsMenuOpen(false); }} className="text-lg text-white text-left">{item.label}</button>
               ))}
               <div className="h-[1px] bg-white/10 my-3"></div>
-              {isAuthenticated ? (
-                <>
-                  <button onClick={() => { handleNavigate('dashboard'); setIsMenuOpen(false); }} className="text-white text-left">Account</button>
-                  <button onClick={handleLogout} className="text-red-400">Logout</button>
-                </>
-              ) : (
-                <button onClick={() => { handleNavigate('login'); setIsMenuOpen(false); }} className="text-white text-left">Login</button>
-              )}
               <button onClick={() => { handleNavigate('list-your-business'); setIsMenuOpen(false); }} className="text-black bg-white px-4 py-2 rounded text-center font-bold mt-2">+ List Business</button>
            </div>
         </div>
