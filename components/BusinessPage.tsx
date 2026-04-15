@@ -127,29 +127,29 @@ const BusinessPage: React.FC<{ navigate: (view: string, category?: string, id?: 
         </div>
 
         {/* Primary Filter Bar */}
-        <div className="container mx-auto mb-8">
-          <div className="flex items-center gap-3 flex-wrap">
+        <div className="container mx-auto mb-8 px-4">
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
             <div className="relative">
               <button 
                 onClick={() => { setAreaOpen(!areaOpen); setSubcategoryOpen(false); }} 
-                className={`px-4 py-2 rounded-full shadow-sm ${filters.areas && filters.areas.length ? 'bg-gold-500 text-black' : 'bg-black/60 text-gray-200'}`}
+                className={`px-2.5 sm:px-4 py-2 rounded-full shadow-sm text-xs sm:text-sm whitespace-nowrap ${filters.areas && filters.areas.length ? 'bg-gold-500 text-black' : 'bg-black/60 text-gray-200'}`}
               >
-                Location: {filters.areas && filters.areas.length ? filters.areas[0] : 'All Mpumalanga'}
+                <span className="hidden sm:inline">Location:</span> {filters.areas && filters.areas.length ? filters.areas[0].substring(0, 8) : 'All'}
               </button>
               {areaOpen && (
-                <div className="absolute mt-2 w-72 bg-black/95 border border-white/10 rounded-lg p-3 shadow-lg z-40">
+                <div className="absolute mt-2 w-screen sm:w-72 sm:left-0 left-1/2 sm:translate-x-0 -translate-x-1/2 bg-black/95 border border-white/10 rounded-lg p-3 shadow-lg z-40 max-h-64 overflow-hidden flex flex-col">
                   <input 
-                    placeholder="Search city or town" 
+                    placeholder="Search area..." 
                     value={areaQuery} 
                     onChange={(e)=>setAreaQuery(e.target.value)} 
-                    className="w-full bg-black/80 text-gray-200 px-3 py-2 rounded mb-2" 
+                    className="w-full bg-black/80 text-gray-200 px-2 sm:px-3 py-2 rounded mb-2 text-xs sm:text-sm" 
                   />
-                  <div className="max-h-40 overflow-auto">
+                  <div className="max-h-40 overflow-y-auto flex-1">
                     {MPUMALANGA_AREAS.filter(a => a.toLowerCase().includes(areaQuery.toLowerCase())).map(a => (
                       <button 
                         key={a} 
                         onClick={() => { setFilters({...filters, areas: [a]}); setAreaOpen(false); setAreaQuery(''); }} 
-                        className="w-full text-left px-2 py-2 rounded hover:bg-black/80 text-gray-200"
+                        className="w-full text-left px-2 py-1.5 sm:py-2 rounded hover:bg-black/80 text-gray-200 text-xs sm:text-sm transition-colors"
                       >
                         {a}
                       </button>
@@ -162,21 +162,23 @@ const BusinessPage: React.FC<{ navigate: (view: string, category?: string, id?: 
             <div className="relative">
               <button 
                 onClick={() => { setSubcategoryOpen(!subcategoryOpen); setAreaOpen(false); }} 
-                className={`px-4 py-2 rounded-full shadow-sm ${filters.subcategories && filters.subcategories.length ? 'bg-gold-500 text-black' : 'bg-black/60 text-gray-200'}`}
+                className={`px-2.5 sm:px-4 py-2 rounded-full shadow-sm text-xs sm:text-sm whitespace-nowrap ${filters.subcategories && filters.subcategories.length ? 'bg-gold-500 text-black' : 'bg-black/60 text-gray-200'}`}
               >
-                Service: {filters.subcategories && filters.subcategories.length ? filters.subcategories[0] : 'All Services'}
+                <span className="hidden sm:inline">Service:</span> {filters.subcategories && filters.subcategories.length ? filters.subcategories[0].substring(0, 8) : 'All'}
               </button>
               {subcategoryOpen && (
-                <div className="absolute mt-2 w-72 bg-black/95 border border-white/10 rounded-lg p-3 shadow-lg z-40">
-                  {(CategorySubcategories[Category.BusinessAndProfessional] || []).map(t => (
-                    <button 
-                      key={t} 
-                      onClick={() => { setFilters({...filters, subcategories: [t]}); setSubcategoryOpen(false); }} 
-                      className="w-full text-left px-2 py-2 rounded hover:bg-black/80 text-gray-200 text-sm"
-                    >
-                      {t}
-                    </button>
-                  ))}
+                <div className="absolute mt-2 w-screen sm:w-72 sm:left-0 left-1/2 sm:translate-x-0 -translate-x-1/2 bg-black/95 border border-white/10 rounded-lg p-3 shadow-lg z-40 max-h-64 overflow-hidden flex flex-col">
+                  <div className="max-h-40 overflow-y-auto flex-1">
+                    {(CategorySubcategories[Category.BusinessGrowthAndConsulting] || []).map(t => (
+                      <button 
+                        key={t} 
+                        onClick={() => { setFilters({...filters, subcategories: [t]}); setSubcategoryOpen(false); }} 
+                        className="w-full text-left px-2 py-1.5 sm:py-2 rounded hover:bg-black/80 text-gray-200 text-xs sm:text-sm transition-colors"
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -246,7 +248,7 @@ const BusinessPage: React.FC<{ navigate: (view: string, category?: string, id?: 
                 <div>
                   <label className="text-sm text-gray-300 font-semibold mb-3 block">Service Category</label>
                   <div className="flex flex-wrap gap-2">
-                    {(CategorySubcategories[Category.BusinessAndProfessional] || []).map(sub => (
+                    {(CategorySubcategories[Category.BusinessGrowthAndConsulting] || []).map(sub => (
                       <button 
                         key={sub} 
                         onClick={() => {

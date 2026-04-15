@@ -134,16 +134,18 @@ const EatsPage: React.FC<{ navigate: (view: string, category?: string, id?: stri
         </div>
 
         {/* Primary Filter Bar - pill style */}
-        <div className="container mx-auto px-6 mb-6">
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <button onClick={() => { setAreaOpen(!areaOpen); setTypeOpen(false); setCuisineOpen(false); setPriceOpen(false); }} className={`px-4 py-2 rounded-full shadow-sm ${filters.areas && filters.areas.length ? 'bg-gold-500 text-black' : 'bg-black/60 text-gray-200'}`}>Area: {filters.areas && filters.areas.length ? filters.areas[0] : 'All Mpumalanga'}</button>
+        <div className="container mx-auto px-4 mb-6 overflow-x-auto">
+          <div className="flex items-center gap-2 sm:gap-3 flex-nowrap pb-2">
+            <div className="relative flex-shrink-0">
+              <button onClick={() => { setAreaOpen(!areaOpen); setTypeOpen(false); setCuisineOpen(false); setPriceOpen(false); }} className={`px-2 sm:px-3 md:px-4 py-2 rounded-full shadow-sm text-xs sm:text-sm whitespace-nowrap ${filters.areas && filters.areas.length ? 'bg-gold-500 text-black' : 'bg-black/60 text-gray-200'}`}>
+                <span className="hidden sm:inline">Area:</span> {filters.areas && filters.areas.length ? filters.areas[0].substring(0, 7) : 'All'}
+              </button>
               {areaOpen && (
-                <div className="absolute mt-2 w-72 bg-black/95 border border-white/10 rounded-lg p-3 shadow-lg z-40">
-                  <input placeholder="Search city or town" value={areaQuery} onChange={(e)=>setAreaQuery(e.target.value)} className="w-full bg-black/80 text-gray-200 px-3 py-2 rounded mb-2" />
-                  <div className="max-h-40 overflow-auto">
+                <div className="absolute mt-2 w-screen left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 sm:w-72 bg-black/95 border border-white/10 rounded-lg p-3 shadow-lg z-40 max-h-64 flex flex-col">
+                  <input placeholder="Search..." value={areaQuery} onChange={(e)=>setAreaQuery(e.target.value)} className="w-full bg-black/80 text-gray-200 px-2 sm:px-3 py-2 rounded mb-2 text-xs sm:text-sm" />
+                  <div className="max-h-40 overflow-y-auto flex-1">
                     {MPUMALANGA_AREAS.filter(a => a.toLowerCase().includes(areaQuery.toLowerCase())).map(a => (
-                      <button key={a} onClick={() => { setFilters({...filters, areas: [a]}); setAreaOpen(false); setAreaQuery(''); }} className="w-full text-left px-2 py-2 rounded hover:bg-black/80 text-gray-200">{a}</button>
+                      <button key={a} onClick={() => { setFilters({...filters, areas: [a]}); setAreaOpen(false); setAreaQuery(''); }} className="w-full text-left px-2 py-1.5 sm:py-2 rounded hover:bg-black/80 text-gray-200 text-xs sm:text-sm transition-colors">{a}</button>
                     ))}
                   </div>
                 </div>
