@@ -35,10 +35,18 @@ export default function ProductCard({ product, onView, onAddToCart }: ProductCar
       tabIndex={0}
       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onView?.(product)}
       onClick={() => onView?.(product)}
-      className="group bg-black rounded-2xl overflow-hidden transition-transform duration-300 hover:shadow-[0_24px_80px_rgba(212,175,55,0.12)] hover:-translate-y-1 cursor-pointer border border-white/6 flex flex-row sm:flex-col h-32 sm:h-auto sm:h-96 md:h-[420px] lg:h-96"
+      className="group bg-black rounded-2xl overflow-hidden transition-transform duration-300 hover:shadow-[0_24px_80px_rgba(212,175,55,0.12)] hover:-translate-y-1 cursor-pointer border border-white/6"
+      style={{
+        display: 'flex',
+        flexDirection: window.innerWidth < 640 ? 'row' : 'column',
+        height: window.innerWidth < 640 ? '140px' : (window.innerWidth < 1024 ? '360px' : '420px'),
+      }}
     >
-      {/* Image - Horizontal on mobile, top on tablet+ */}
-      <div className="relative w-32 sm:w-full h-32 sm:h-40 md:h-56 bg-[#070707] overflow-hidden flex-shrink-0">
+      {/* Image Container - Responsive Sizing */}
+      <div className="relative bg-[#070707] overflow-hidden flex-shrink-0" style={{
+        width: window.innerWidth < 640 ? '140px' : '100%',
+        height: window.innerWidth < 640 ? '140px' : (window.innerWidth < 768 ? '180px' : (window.innerWidth < 1024 ? '240px' : '280px')),
+      }}>
         {/* Image guaranteed by hard render rule above */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={firstImage} alt={product.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -48,7 +56,7 @@ export default function ProductCard({ product, onView, onAddToCart }: ProductCar
           <span className="text-gray-300 text-xs">{priceLabel}</span>
         </div>
 
-        {/* favorite - absolute to work on both layouts */}
+        {/* favorite button */}
         <button onClick={(e) => e.stopPropagation()} className="absolute top-1 right-1 sm:top-2 sm:right-2 p-1 sm:p-2 rounded-full bg-black/50 text-gold-300 border border-white/6 hover:bg-black/70 transition-all">
           <Heart size={12} className="sm:w-4 sm:h-4" />
         </button>
@@ -61,8 +69,8 @@ export default function ProductCard({ product, onView, onAddToCart }: ProductCar
         </div>
       </div>
 
-      {/* Content - Responsive Layout */}
-      <div className="flex-1 p-1.5 sm:p-3 md:p-4 flex flex-col justify-between">
+      {/* Content Section - Full Width */}
+      <div className="flex-1 p-1.5 sm:p-3 md:p-4 flex flex-col justify-between" style={{ minWidth: window.innerWidth < 640 ? '0' : 'auto' }}>
         {/* Top Section - Brand & Title */}
         <div className="min-w-0">
           <div className="text-xs uppercase text-gray-400 tracking-wider line-clamp-1">{product.brand || ''}</div>

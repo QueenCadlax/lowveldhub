@@ -127,34 +127,41 @@ export default function MarketplacePage() {
           onSelect={(c) => setFilters({ ...filters, category: c })}
         />
 
-        <div className="mt-8 flex gap-6">
-          {/* Desktop Filters */}
-          <div className="hidden md:block">
+        {/* MOBILE/TABLET: Show Filter Toggle Button Above Products */}
+        <div className="lg:hidden mb-6">
+          <button
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#d4af37] to-[#ffd700] text-black rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-[#ffd700]/30 duration-300 border border-[#d4af37]"
+          >
+            <Menu size={20} />
+            {showMobileFilters ? 'Hide Filters' : 'Show Filters'}
+          </button>
+        </div>
+
+        {/* TABLET: Show Collapsible Filter Bar */}
+        {showMobileFilters && (
+          <div className="lg:hidden mb-6 bg-[#121212] rounded-lg border border-[#d4af37]/20 p-4">
+            <FiltersPanel filters={filters} setFilters={setFilters} />
+          </div>
+        )}
+
+        <div className="flex gap-6">
+          {/* DESKTOP ONLY: Sticky Sidebar Filters */}
+          <div className="hidden lg:block">
             <FiltersPanel filters={filters} setFilters={setFilters} />
           </div>
 
-          {/* Mobile Filter Button */}
-            <div className="md:hidden mb-4 w-full">
-            <button
-              onClick={() => setShowMobileFilters(!showMobileFilters)}
-              className="w-full flex items-center gap-2 px-4 py-3 bg-black text-[#ffd700] rounded-lg font-semibold transition-all hover:bg-[#ffd700] hover:text-black duration-300 border border-[#d4af37]/20"
-            >
-              <Menu size={18} />
-              {showMobileFilters ? 'Hide Filters' : 'Show Filters'}
-            </button>
-          </div>
-
-          {/* Mobile Slide-out Filters */}
+          {/* MOBILE: Slide-out Modal Filter Panel */}
           {showMobileFilters && (
-            <div className="fixed inset-0 bg-black/60 z-40 md:hidden" onClick={() => setShowMobileFilters(false)}>
+            <div className="fixed inset-0 bg-black/70 z-40 lg:hidden" onClick={() => setShowMobileFilters(false)}>
               <div
-                className="fixed left-0 top-0 bottom-0 w-80 bg-[#121212] border-r border-[#d4af37]/20 overflow-y-auto animate-slide-in"
+                className="fixed left-0 top-0 bottom-0 w-72 bg-[#121212] border-r border-[#d4af37]/20 overflow-y-auto animate-slide-in"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="sticky top-0 p-4 border-b border-[#d4af37]/20 flex justify-between items-center bg-[#121212]">
-                  <h3 className="font-semibold text-white">Filters</h3>
+                  <h3 className="font-semibold text-white text-lg">Filters</h3>
                   <button onClick={() => setShowMobileFilters(false)} className="text-[#cfcfcf] hover:text-white transition-colors">
-                    <X size={20} />
+                    <X size={24} />
                   </button>
                 </div>
                 <div className="p-4">
@@ -164,7 +171,8 @@ export default function MarketplacePage() {
             </div>
           )}
 
-          <main className="flex-1">
+          {/* PRODUCTS: Always Full Width */}
+          <main className="w-full">
             {/* Sort Bar */}
             <div className="flex justify-between items-center mb-6 pb-6 border-b border-[#d4af37]/10">
               <p className="text-sm text-[#cfcfcf] font-medium">{filtered.length} curated products</p>
