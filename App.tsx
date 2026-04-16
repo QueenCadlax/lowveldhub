@@ -1342,6 +1342,9 @@ const Footer = ({ navigate, onLogin }: any) => (
                         <a href="https://www.twitter.com/lowveldhub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300">
                             <Twitter size={20} />
                         </a>
+                        <a href="https://www.youtube.com/@lowveldhub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300">
+                            <Youtube size={20} />
+                        </a>
                         <a href="https://www.tiktok.com/@lowveldhub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gold-400 cursor-pointer transition-colors duration-300">
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" style={{ transform: 'scale(1.3)', transformOrigin: 'center' }}>
                                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.82 2.89 2.89 0 0 1 5.1-1.82v-3.28a6.47 6.47 0 0 0-5.79 3.31 6.47 6.47 0 0 0 5.79 3.31v-3.45a4.83 4.83 0 0 0 3.77-4.25V6.69Z" />
@@ -2894,6 +2897,47 @@ const HomeView = ({ navigate, favorites, toggleFavorite, businesses, activeArea,
                                 </div>
                         </section>
             <QuickAccessSection navigate={navigate} />
+            
+            {/* Recently Viewed Section */}
+            {typeof window !== 'undefined' && (() => {
+              const stored = JSON.parse(localStorage.getItem('lh_recently_viewed') || '[]');
+              return stored.length > 0 ? (
+                <section className="py-16 bg-gradient-to-b from-black/60 to-black/30 border-t border-white/5 mb-8">
+                  <div className="container mx-auto px-4">
+                    <div className="mb-8 flex items-center justify-between">
+                      <div>
+                        <h2 className="text-2xl md:text-3xl font-serif text-white mb-2">Recently Viewed</h2>
+                        <p className="text-gray-400 text-sm">Places you've been looking at</p>
+                      </div>
+                      <button 
+                        onClick={() => localStorage.setItem('lh_recently_viewed', '[]')}
+                        className="text-xs text-gray-500 hover:text-gold-400 transition-colors underline"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {stored.slice(0, 4).map((item: any) => (
+                        <div 
+                          key={item.id}
+                          onClick={() => navigate('business-detail', undefined, item.id)}
+                          className="group relative h-64 bg-black/50 rounded-xl overflow-hidden border border-white/10 hover:border-gold-400 cursor-pointer transition-all hover:scale-105"
+                        >
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                          <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 className="text-white font-bold text-sm truncate group-hover:text-gold-300 transition-colors">{item.name}</h3>
+                            <p className="text-gray-300 text-xs mt-1">{item.location}</p>
+                            {item.rating && <p className="text-gold-400 text-xs mt-1">⭐ {item.rating}</p>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              ) : null;
+            })()}
+            
             <ActivityTicker />
             <SponsoredSection />
             <section className="py-20 bg-[#050505] border-t border-white/5">
@@ -3204,6 +3248,20 @@ function App() {
     if (category) setActiveCategory(category);
     if (sub) setActiveSub(sub);
     if (id) setSelectedBusinessId(id);
+    
+    // Track recently viewed listings
+    if (id && (view === 'business-detail' || view === 'eatery-detail' || view === 'property-detail' || view === 'destination-detail' || view === 'transport-detail' || view === 'experience-detail')) {
+      try {
+        const business = localBusinesses.find(b => b.id === id);
+        if (business) {
+          const viewed = JSON.parse(localStorage.getItem('lh_recently_viewed') || '[]');
+          const filtered = viewed.filter((v: any) => v.id !== id);
+          const newViewed = [{ id: business.id, name: business.name, image: business.image, location: business.location, rating: business.rating }, ...filtered].slice(0, 20);
+          localStorage.setItem('lh_recently_viewed', JSON.stringify(newViewed));
+        }
+      } catch (e) {}
+    }
+    
     window.scrollTo(0, 0);
     setIsMenuOpen(false);
   };

@@ -7255,6 +7255,41 @@ const BusinessDetailView: React.FC<BusinessDetailViewProps> = ({ businessId, nav
             </div>
           </div>
         </div>
+
+        {/* ===== STICKY CONTACT FOOTER (Mobile + Desktop) ===== */}
+        <div className="fixed bottom-0 left-0 right-0 bg-black/95 border-t border-white/10 backdrop-blur-lg z-40 p-3 md:p-4">
+          <div className="container mx-auto px-4 flex gap-2 justify-center md:justify-start">
+            {business.phone && (
+              <a 
+                href={`tel:${business.phone}`}
+                className="flex-1 md:flex-none px-4 py-3 bg-gold-500/10 border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-black transition-all rounded-lg font-semibold text-sm flex items-center justify-center gap-2"
+              >
+                <Phone size={16} /> CALL
+              </a>
+            )}
+            {business.email && (
+              <a 
+                href={`mailto:${business.email}`}
+                className="flex-1 md:flex-none px-4 py-3 bg-blue-500/10 border border-blue-500/40 text-blue-400 hover:bg-blue-500 hover:text-white transition-all rounded-lg font-semibold text-sm flex items-center justify-center gap-2"
+              >
+                <Mail size={16} /> EMAIL
+              </a>
+            )}
+            {business.phone && (
+              <a 
+                href={`https://wa.me/${business.phone.replace(/\D/g, '').replace(/^0/, '27')}?text=${encodeURIComponent(`Hi, I'm interested in "${business.name}" on LowveldHub.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 md:flex-none px-4 py-3 bg-green-600/10 border border-green-600/40 text-green-400 hover:bg-green-600 hover:text-white transition-all rounded-lg font-semibold text-sm flex items-center justify-center gap-2"
+              >
+                <MessageCircle size={16} /> WHATSAPP
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* Add bottom padding to prevent content from hiding under sticky footer */}
+        <div className="h-20"></div>
       </div>
     </div>
   );
